@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fundament statt Dach</title>
+<meta name="description" content="PISA 2025 und die Kürzungen bei Familienzentren und interkultureller Koordination im Landkreis Potsdam-Mittelmark: eine geprüfte Evidenzarchitektur mit Claim-Ledger.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+/* Layout: eine Lesespalte (Dossier) mit eingeschobenen Instrumenten; Sternenstaub Dark Ambient, bewusst einthemig dunkel, Druck hell */
+:root {
+  --void: #060714;
+  --nebula: #10152b;
+  --card: #141a33;
+  --line: #2a3156;
+  --parchment: #f4ead9;
+  --muted: #c8bea9;
+  --gold: #d9a35c;
+  --teal: #8fd3c1;
+  --sky: #9cc4f2;
+  --violet: #c9b3f5;
+  --rose: #f0a8a0;
+  --land: #5f86c9;
+  --kreis: #d9a35c;
+  --eigen: #8a8fb0;
+  --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --s-1: 0.875rem; --s0: 1.0625rem; --s1: 1.25rem; --s2: 1.6rem; --s3: 2.2rem; --s4: clamp(2.4rem, 7vw, 4.2rem);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--void); }
+body {
+  margin: 0; background: var(--void); color: var(--parchment);
+  font-family: var(--f-body); font-size: var(--s0); line-height: 1.62;
+  padding-inline: 16px; padding-block: 0;
+}
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
+.wrap { position: relative; z-index: 1; max-width: 46rem; margin-inline: auto; padding-block: 2.5rem 4rem; display: grid; gap: 3.2rem; }
+a { color: var(--sky); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; line-height: 1.15; margin: 0; }
+h2 { font-size: var(--s3); }
+h3 { font-size: var(--s1); }
+p { margin: 0; }
+.stack { display: grid; gap: 1rem; }
+.eyebrow { font-family: var(--f-mono); font-size: var(--s-1); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* Kopf */
+header.hero { display: grid; gap: 1.1rem; padding-top: 1rem; }
+header.hero h1 { font-size: var(--s4); font-weight: 800; letter-spacing: -0.01em; }
+header.hero h1 span { display: block; font-weight: 400; font-style: italic; font-size: .45em; color: var(--muted); margin-top: .5rem; letter-spacing: 0; }
+.status { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pill { font-family: var(--f-mono); font-size: var(--s-1); border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; background: var(--nebula); }
+.pill.live { border-color: var(--rose); color: var(--rose); }
+.toolbar { display: flex; flex-wrap: wrap; gap: .6rem; }
+button.btn { font: inherit; font-size: var(--s-1); font-family: var(--f-mono); background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 6px; padding: .45rem .9rem; cursor: pointer; }
+button.btn:hover { background: rgba(217,163,92,.12); }
+
+/* These-Block */
+.thesis { border-left: 3px solid var(--gold); padding-left: 1.1rem; display: grid; gap: .8rem; }
+.thesis p.big { font-family: var(--f-display); font-size: var(--s2); line-height: 1.3; }
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+.glass { background: rgba(20,26,51,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem; display: grid; gap: .6rem; min-width: 0; }
+.glass h3 { font-size: var(--s0); font-family: var(--f-mono); font-weight: 600; letter-spacing: .04em; color: var(--gold); text-transform: uppercase; }
+
+/* Evidenz-Tags */
+.tag { display: inline-block; font-family: var(--f-mono); font-size: .78rem; line-height: 1.3; padding: .05rem .4rem; border: 1px solid currentColor; border-radius: 4px; white-space: nowrap; vertical-align: .08em; }
+.t-fakt { color: var(--teal); }
+.t-abl { color: var(--sky); }
+.t-mod { color: var(--violet); }
+.t-sch { color: var(--gold); }
+.t-wer { color: var(--rose); }
+.t-ums { color: var(--rose); border-style: dashed; }
+.t-unb { color: var(--muted); border-style: dotted; }
+.t-proj { color: var(--violet); border-style: dashed; }
+.r-ev { color: var(--teal); } .r-mod { color: var(--violet); } .r-fach { color: var(--sky); } .r-norm { color: var(--rose); }
+
+/* Tabellen */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: rgba(16,21,43,.8); }
+table { border-collapse: collapse; width: 100%; font-size: var(--s-1); font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 600; color: var(--gold); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; background: var(--nebula); }
+tr:last-child td { border-bottom: 0; }
+td.num { text-align: right; white-space: nowrap; }
+
+/* Charts */
+figure { margin: 0; display: grid; gap: .5rem; min-width: 0; }
+figcaption { font-size: var(--s-1); color: var(--muted); }
+.chart { width: 100%; height: auto; max-width: 100%; display: block; }
+.chart-sm { max-width: 22rem; min-width: 0 !important; }
+.chartbox { overflow-x: auto; }
+@media (max-width: 600px) { .chartbox .chart { min-width: 560px; } }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { stroke: var(--muted); stroke-width: 1; }
+.chart .refline { stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+.chart .reflabel { fill: var(--gold); font: 12px var(--f-mono); }
+.chart .tick { fill: var(--muted); font: 12px var(--f-mono); }
+.chart .val { fill: var(--parchment); font: 600 12px var(--f-mono); }
+.chart .lab { fill: var(--parchment); font: 13px var(--f-body); }
+.chart .note { fill: var(--muted); font: 11.5px var(--f-body); }
+.chart .s-land { fill: var(--land); }
+.chart .s-kreis { fill: var(--kreis); }
+.chart .s-eigen { fill: var(--eigen); }
+.chart .o-ref { fill: var(--eigen); }
+.chart .o-cut { fill: var(--rose); }
+.chart .o-mid { fill: var(--gold); }
+.chart .o-full { fill: var(--teal); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: var(--s-1); color: var(--muted); }
+.legend i { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; margin-right: .35rem; vertical-align: -.08em; }
+
+/* Kette */
+ol.chain { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; counter-reset: c; }
+ol.chain li { display: grid; grid-template-columns: 8.2rem 1fr; gap: .8rem; align-items: start; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: rgba(16,21,43,.75); }
+ol.chain li b { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+ol.chain li.counter { border-style: dashed; border-color: var(--rose); }
+@media (max-width: 520px) { ol.chain li { grid-template-columns: 1fr; gap: .2rem; } }
+
+/* Rechner */
+.calc { display: grid; gap: 1rem; }
+.calc label { font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); }
+.calc input[type=range] { width: 100%; accent-color: var(--gold); }
+.out { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .8rem; }
+.out div { border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem; display: grid; gap: .1rem; background: var(--nebula); }
+.out strong { font-family: var(--f-display); font-size: var(--s3); font-weight: 600; color: var(--parchment); font-variant-numeric: tabular-nums; }
+.out span { font-size: var(--s-1); color: var(--muted); }
+
+/* Zeitachse */
+ol.dates { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-left: 1px solid var(--line); }
+ol.dates li { display: grid; grid-template-columns: 6.6rem 1fr; gap: .8rem; padding: .45rem 0 .45rem 1rem; position: relative; }
+ol.dates li::before { content: ""; position: absolute; left: -5px; top: .95rem; width: 9px; height: 9px; border-radius: 50%; background: var(--nebula); border: 1px solid var(--gold); }
+ol.dates li.now::before { background: var(--rose); border-color: var(--rose); }
+ol.dates time { font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); padding-top: .12rem; }
+
+/* Empfehlungen */
+ol.recs { margin: 0; padding-left: 1.3rem; display: grid; gap: .9rem; }
+ol.recs li::marker { font-family: var(--f-mono); color: var(--gold); }
+
+details { border: 1px solid var(--line); border-radius: 10px; background: rgba(16,21,43,.8); }
+details > summary { cursor: pointer; padding: .8rem 1rem; font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); }
+details > div { padding: 0 1rem 1rem; display: grid; gap: .8rem; }
+ul.src { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; font-size: var(--s-1); overflow-wrap: anywhere; }
+
+/* Exoskelett */
+dialog#exo { max-width: min(44rem, calc(100vw - 32px)); width: 100%; max-height: 86vh; border: 1px solid var(--gold); border-radius: 12px; background: var(--nebula); color: var(--parchment); padding: 0; }
+dialog#exo::backdrop { background: rgba(6,7,20,.82); }
+dialog#exo .inner { padding: 1.4rem 1.4rem 1.6rem; display: grid; gap: 1rem; overflow-y: auto; max-height: 86vh; }
+dialog#exo .head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+dl.classes { display: grid; grid-template-columns: max-content 1fr; gap: .45rem .9rem; margin: 0; font-size: var(--s-1); }
+dl.classes dt { white-space: nowrap; }
+dl.classes dd { margin: 0; color: var(--muted); }
+@media (max-width: 520px) { dl.classes { grid-template-columns: 1fr; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+footer { font-size: var(--s-1); color: var(--muted); border-top: 1px solid var(--line); padding-top: 1rem; display: grid; gap: .4rem; }
+
+@media (prefers-reduced-motion: reduce) { #sky { display: none; } }
+
+/* Druckfassung: hell, ohne Atmosphäre, Instrumente als Stand */
+@media print {
+  :root { color-scheme: light; }
+  html, body { background: #fff !important; color: #1a1a1a !important; font-size: 10.5pt; padding: 0; }
+  #sky, .toolbar, dialog, .no-print { display: none !important; }
+  .wrap { max-width: none; gap: 1.2rem; padding: 0; }
+  h1, h2, h3, .out strong { color: #1a1a1a !important; }
+  .eyebrow, th, details > summary, ol.dates time, .calc label, .glass h3, ol.chain li b { color: #5a3d12 !important; }
+  .muted, figcaption, footer, .legend, dl.classes dd, .out span { color: #4a4a4a !important; }
+  .glass, .tbl, details, ol.chain li, .out div, .pill { background: #fff !important; border-color: #bbb !important; backdrop-filter: none !important; }
+  th { background: #f2efe8 !important; }
+  .tag { color: #1a1a1a !important; }
+  .chart .tick, .chart .note, .chart .lab, .chart .val, .chart .reflabel { fill: #1a1a1a !important; }
+  .chart .grid { stroke: #ddd !important; }
+  figure, tr, ol.chain li, .glass, ol.dates li { break-inside: avoid; }
+  h2, h3, .eyebrow { break-after: avoid; }
+  .chartbox .chart { min-width: 0 !important; }
+  .pill.live { color: #1a1a1a !important; }
+  a { color: #1a1a1a; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #4a4a4a; overflow-wrap: anywhere; }
+}
+/* Serie: Navigation und Knotenpunkt-Bausteine */
+nav.series ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+nav.series a { display: inline-block; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; background: var(--nebula); }
+nav.series a:hover { color: var(--parchment); border-color: var(--gold); }
+nav.series a[aria-current="page"] { color: var(--void); background: var(--gold); border-color: var(--gold); font-weight: 600; }
+ol.keys { margin: 0; padding-left: 1.4rem; display: grid; gap: 1rem; }
+ol.keys li::marker { font-family: var(--f-display); font-weight: 600; color: var(--gold); }
+ol.pipe { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .9rem; }
+ol.pipe .stage { position: relative; border: 1px solid var(--line); border-radius: 10px; padding: .9rem .85rem 1rem; background: rgba(16,21,43,.85); display: grid; gap: .45rem; align-content: start; min-width: 0; }
+ol.pipe .stage:not(:last-child)::after { content: "→"; position: absolute; right: -.85rem; top: 2.2rem; color: var(--gold); font-family: var(--f-mono); font-size: 1rem; }
+ol.pipe .stage h3 { font-size: var(--s0); }
+ol.pipe .st-age { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; color: var(--gold); }
+ol.pipe .stage p.st-fig { font-family: var(--f-display); font-size: var(--s3); font-weight: 600; line-height: 1; }
+ol.pipe .stage p { font-size: var(--s-1); }
+ol.pipe .st-local { border-top: 1px solid var(--line); padding-top: .5rem; color: var(--muted); }
+ol.pipe .st-local.cut { border-top: 3px solid var(--rose); color: var(--parchment); }
+ol.pipe .st-local.invest { border-top: 3px solid var(--gold); color: var(--parchment); }
+ol.pipe .stage.gap { border-style: dashed; opacity: .8; }
+@media (min-width: 1000px) { ol.pipe { width: min(70rem, calc(100vw - 64px)); margin-left: calc(50% - min(35rem, 50vw - 32px)); } }
+@media (max-width: 760px) {
+  ol.pipe { grid-template-columns: 1fr; }
+  ol.pipe .stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1.05rem; }
+}
+ul.sprints { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+a.sprint { display: grid; gap: .5rem; height: 100%; padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(20,26,51,.72); color: var(--parchment); text-decoration: none; }
+a.sprint:hover { border-color: var(--gold); }
+a.sprint p { font-size: var(--s-1); color: var(--muted); }
+a.sprint .card-link { font-family: var(--f-mono); font-size: .8rem; color: var(--sky); }
+ul.bridges { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+ul.bridges li { display: grid; grid-template-columns: 13rem 1fr; gap: .8rem; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: rgba(16,21,43,.75); }
+ul.bridges li a { font-family: var(--f-display); font-weight: 600; }
+ul.bridges li span { font-size: var(--s-1); color: var(--muted); }
+@media (max-width: 560px) { ul.bridges li { grid-template-columns: 1fr; gap: .2rem; } }
+.chart .l-sci { stroke: var(--teal); fill: var(--teal); }
+.chart path.l-sci { fill: none; }
+@media print {
+  nav.series, ol.pipe .stage::after { display: none !important; }
+  ol.pipe { grid-template-columns: 1fr 1fr !important; width: auto !important; margin-left: 0 !important; }
+  ol.pipe .stage, a.sprint, ul.bridges li { background: #fff !important; border-color: #bbb !important; break-inside: avoid; }
+  ol.pipe .st-local, a.sprint p, ul.bridges li span { color: #4a4a4a !important; }
+  ol.pipe .st-local.cut { border-top-color: #b4473c !important; color: #1a1a1a !important; }
+  ol.pipe .st-local.invest { border-top-color: #8a5a12 !important; color: #1a1a1a !important; }
+  ol.pipe .st-age, ol.keys li::marker { color: #5a3d12 !important; }
+  a.sprint, ol.pipe .st-fig { color: #1a1a1a !important; }
+  .chart .l-sci { stroke: #1f6f5e !important; fill: #1f6f5e !important; }
+  .chart path.l-sci { fill: none !important; }
+}
+
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Projekt Sternenstaub · PISA-Serie · Sprint 1</p>
+  <nav class="series" aria-label="PISA-Serie"><ul><li><a href="index.html">Übersicht</a></li><li><a href="fundament-statt-dach.html" aria-current="page">Sprint 1 · Fundament statt Dach</a></li><li><a href="wo-geht-es-verloren.html">Sprint 2 · Wo geht es verloren?</a></li></ul></nav>
+  <h1>Fundament statt Dach<span>PISA 2025 und die Kürzungen bei Familienzentren und interkultureller Koordination im Landkreis Potsdam-Mittelmark</span></h1>
+  <div class="status">
+    <span class="pill live">Kreistag 08.10.2026, 15:00 · TOP 7.4 Familienzentren</span>
+    <span class="pill">Petitionsfrist 23.10.2026</span>
+    <span class="pill">Stand 08.10.2026, 14:00</span>
+  </div>
+  <div class="toolbar">
+    <button class="btn" type="button" id="exo-open" aria-haspopup="dialog" aria-controls="exo">Epistemisches Exoskelett öffnen</button>
+  </div>
+</header>
+
+<section class="stack" aria-labelledby="h-kern">
+  <p class="eyebrow">Kurzfassung für Entscheider</p>
+  <h2 id="h-kern">Was die Daten tragen und was nicht</h2>
+  <div class="thesis">
+    <p class="big">Die Kürzungen treffen die Schicht, an der der Rückstand von Kindern aus benachteiligten und zugewanderten Familien statistisch hängt. Einen lokalen Beleg, wie viel diese Schicht bewirkt, gibt es nicht.</p>
+    <p class="muted">Tragfähig ist deshalb ein Kohärenzargument, kein Wirkungsbeweis: Bund und Land investieren in Startchancen-Schulen und fordern frühe Sprachbildung, der Kreis kürzt in derselben Region die Zugangsinfrastruktur davor.</p>
+  </div>
+  <div class="duo">
+    <div class="glass">
+      <h3>These</h3>
+      <p>Wer bei Familienzentren und interkultureller Koordination spart, spart am Zugang zu dem, was PISA mit 15 Jahren misst.</p>
+    </div>
+    <div class="glass">
+      <h3>Antithese</h3>
+      <p>Für keine der beiden Leistungen ist lokal belegt, dass sie Kompetenzen oder Folgekosten verändert. Bei 27,3 Mio. € Defizit sind freiwillige Leistungen ohne Wirkungsnachweis der erste Prüfposten.</p>
+    </div>
+  </div>
+  <div class="tbl">
+    <table>
+      <caption class="sr-only">Kernkennzahlen mit Evidenzklasse und Risiken</caption>
+      <thead><tr><th scope="col">Kennzahl</th><th scope="col">Klasse</th><th scope="col">Übertragungsrisiko</th></tr></thead>
+      <tbody>
+        <tr><td>PISA 2025: Zuwanderungsabstand Naturwissenschaften 58 / 98 / 129 Punkte; nach Kontrolle von Herkunft, Geschlecht und Familiensprache 18 / 32 / 67</td><td><span class="tag t-fakt">Fakt</span></td><td>hoch: zeigt, wo der Abstand sitzt, nicht was hilft</td></tr>
+        <tr><td>Landes-Richtlinie „Integrationsbudget“ zum 31.12.2024 ausgelaufen; 2022–2024 je 765.400 € verfügbar, davon 70 % Land</td><td><span class="tag t-fakt">Fakt</span></td><td>niedrig</td></tr>
+        <tr><td>Kreis 2025 mit eigenen Mitteln: 200.000 € Integrationsrichtlinie + 140.000 € für beide Koordinationsstellen, das 4,5-Fache des Kreisanteils 2024</td><td><span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span></td><td>niedrig</td></tr>
+        <tr><td>Familienzentren 2027: 777.100 € statt 1.277.100 € (−39,2 %); Verträge zum 31.12.2026 gekündigt; Planregion 3+4 Finanzierung 80/20 → 70/30</td><td><span class="tag t-fakt">Fakt</span></td><td>niedrig</td></tr>
+        <tr><td>Zwei der drei Startchancen-Schulen im Kreis liegen in Planregion 4 (Bad Belzig, Wiesenburg)</td><td><span class="tag t-fakt">Fakt</span></td><td>mittel</td></tr>
+        <tr><td>Beide Koordinationsstellen kosten 0,02 % der Kreisaufwendungen; nach Antrag 2026/403 blieben im Kreisentwicklungsbudget 127.100 € frei (91 % von 140.000 €)</td><td><span class="tag t-abl">Ableitung</span></td><td>niedrig, abhängig vom Beschluss</td></tr>
+        <tr><td>Additive Sprachförderung im Kindergarten ohne Mehreffekt (EVAS); familienbezogene Prävention d = 0,31, auf Kindverhalten 0,20</td><td><span class="tag t-fakt">Fakt</span> <span class="tag t-ums">Umstritten</span></td><td>hoch: andere Länder, andere Programme</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack" aria-labelledby="h-pisa">
+  <p class="eyebrow">1 · Bildungsbefund</p>
+  <h2 id="h-pisa">Was PISA misst und wo der Abstand sitzt</h2>
+  <p>PISA 2025 meldet für Deutschland Lesen 465, Mathematik 464 und Naturwissenschaften 486 Punkte, die niedrigsten Werte seit Beginn der Studie <span class="tag t-fakt">Fakt</span>. Ein Drittel der 15-Jährigen liegt in Lesen und Mathematik unter Kompetenzstufe 2; 2015 war es rund ein Sechstel <span class="tag t-fakt">Fakt</span>. Der Abstand zwischen sozial privilegierten und benachteiligten Jugendlichen beträgt in den Naturwissenschaften 125 Punkte (OECD 85) und ist seit 2015 gewachsen, während er im OECD-Schnitt kleiner wurde <span class="tag t-fakt">Fakt</span>.</p>
+  <p>Jugendliche, die erst ab elf Jahren zugewandert sind, liegen 129 Punkte hinter Gleichaltrigen ohne Zuwanderungsgeschichte. Rechnet man soziale Herkunft, Geschlecht und Familiensprache heraus, bleiben 67 Punkte; in der zweiten Generation schrumpfen 58 auf 18 Punkte <span class="tag t-fakt">Fakt</span>. Damit sind 48 bis 69 % des Abstands statistisch an diese Merkmale gebunden <span class="tag t-abl">Ableitung</span>. Das zeigt den Ort des Problems. Ob eine bestimmte Maßnahme es löst, zeigt es nicht.</p>
+  <p>Der Rückgang beginnt nicht erst mit 15. In IGLU fiel die Lesekompetenz der Viertklässler von 539 (2001) auf 524 Punkte (2021); unter Kompetenzstufe III lagen zuletzt 25,4 % statt 17,0 %, und die Forschenden führen das ausdrücklich nicht auf eine veränderte Zusammensetzung der Schülerschaft zurück <span class="tag t-fakt">Fakt</span>.</p>
+  <p class="muted">Brandenburg prüft den Sprachstand im Jahr vor der Einschulung; bei Förderbedarf ist die Teilnahme an kompensatorischer Sprachförderung in der Kita Pflicht, mindestens zwölf Wochen (SfFV § 3, § 5) <span class="tag t-fakt">Fakt</span>.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-geld">
+  <p class="eyebrow">2 · Integrationsfinanzierung</p>
+  <h2 id="h-geld">Das Land ist ausgestiegen, der Kreis hat übernommen und kürzt jetzt</h2>
+  <p>Bis Ende 2024 finanzierte das Land über das „Integrationsbudget“ 70 % kommunaler Integrationsprojekte. Die Richtlinie lief zum 31.12.2024 aus. Der Kreis hat 2025 mit 340.000 € eigenem Geld weitergemacht, dem 4,5-Fachen seines bisherigen Anteils <span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span>. Die Nachfolgeförderung des Landes (Richtlinie „sozioökonomische Integration“, ESF+, 60 %) nutzt der Kreis im „SIM-Projekt“ für Arbeitsgelegenheiten und trägt dafür 927.600 € Eigenmittel pro Jahr <span class="tag t-fakt">Fakt</span>.</p>
+  <figure>
+    <div class="chartbox"><svg viewBox="0 0 640 330" role="img" aria-labelledby="c1t c1d" class="chart"><title id="c1t">Integrationsmittel im Kreis Potsdam-Mittelmark 2022 bis 2025</title><desc id="c1d">Gestapelte Säulen: Landesmittel, Kreismittel und Eigenanteil der Träger. 2022: 166.303 Euro, 2023: 419.502 Euro, 2024: 489.458 Euro, 2025: 340.000 Euro nur aus Kreismitteln.</desc><line x1="78" x2="620" y1="274.0" y2="274.0" class="grid"/><text x="70" y="278.0" class="tick" text-anchor="end">0 T€</text><line x1="78" x2="620" y1="211.5" y2="211.5" class="grid"/><text x="70" y="215.5" class="tick" text-anchor="end">200 T€</text><line x1="78" x2="620" y1="149.0" y2="149.0" class="grid"/><text x="70" y="153.0" class="tick" text-anchor="end">400 T€</text><line x1="78" x2="620" y1="86.5" y2="86.5" class="grid"/><text x="70" y="90.5" class="tick" text-anchor="end">600 T€</text><line x1="78" x2="620" y1="24.0" y2="24.0" class="grid"/><text x="70" y="28.0" class="tick" text-anchor="end">800 T€</text><line x1="78" x2="472.2" y1="34.8" y2="34.8" class="refline"/><text x="84" y="27.8" class="reflabel">verfügbar 2022–2024: 765.400 € je Jahr (70 % Land)</text><rect x="127.2" y="237.8" width="74" height="36.2" class="s-land"><title>2022: 115.942 €</title></rect><rect x="127.2" y="222.5" width="74" height="15.3" class="s-kreis"><title>2022: 48.840 €</title></rect><rect x="127.2" y="222.0" width="74" height="0.5" class="s-eigen"><title>2022: 1.521 €</title></rect><text x="164.2" y="214.0" class="val" text-anchor="middle">166.303 €</text><text x="164.2" y="294" class="tick" text-anchor="middle">2022</text><text x="164.2" y="310" class="tick" text-anchor="middle">IST</text><rect x="250.4" y="182.5" width="74" height="91.5" class="s-land"><title>2023: 292.652 €</title></rect><rect x="250.4" y="156.1" width="74" height="26.4" class="s-kreis"><title>2023: 84.508 €</title></rect><rect x="250.4" y="142.9" width="74" height="13.2" class="s-eigen"><title>2023: 42.342 €</title></rect><text x="287.4" y="134.9" class="val" text-anchor="middle">419.502 €</text><text x="287.4" y="294" class="tick" text-anchor="middle">2023</text><text x="287.4" y="310" class="tick" text-anchor="middle">IST</text><rect x="373.6" y="166.9" width="74" height="107.1" class="s-land"><title>2024: 342.621 €</title></rect><rect x="373.6" y="143.2" width="74" height="23.7" class="s-kreis"><title>2024: 75.864 €</title></rect><rect x="373.6" y="121.0" width="74" height="22.2" class="s-eigen"><title>2024: 70.973 €</title></rect><text x="410.6" y="113.0" class="val" text-anchor="middle">489.458 €</text><text x="410.6" y="294" class="tick" text-anchor="middle">2024</text><text x="410.6" y="310" class="tick" text-anchor="middle">IST</text><rect x="496.8" y="167.8" width="74" height="106.2" class="s-kreis"><title>2025: 340.000 €</title></rect><text x="533.8" y="159.8" class="val" text-anchor="middle">340.000 €</text><text x="533.8" y="294" class="tick" text-anchor="middle">2025</text><text x="533.8" y="310" class="tick" text-anchor="middle">Ansatz Kreis</text><line x1="78" x2="620" y1="274.0" y2="274.0" class="axis"/></svg></div>
+    <div class="legend" aria-hidden="true"><span><i style="background:var(--land)"></i>Landesmittel</span><span><i style="background:var(--kreis)"></i>Kreismittel</span><span><i style="background:var(--eigen)"></i>Eigenanteil Träger</span></div>
+    <figcaption>Quelle: Verwaltungsantworten A/2025/028 (06.03.2025) und A/2025/039 (16.05.2025). 2022–2024 tatsächlich abgerechnet, 2025 Ansatz des Kreises (200.000 € Richtlinie + 140.000 € Koordination).</figcaption>
+  </figure>
+  <p>Im Sozialausschuss am 22.09.2026 erklärte der Erste Beigeordnete laut Niederschrift, dass im Bereich Integration „auf den Brandenburger Standard zurückgegangen“ werde und im Wesentlichen nur noch gesetzlich vorgeschriebene Aufgaben erfüllt würden <span class="tag t-fakt">Fakt</span>. Ein öffentlicher Beschluss zur Streichung der beiden Koordinationsstellen ist im Ratsinformationssystem nicht auffindbar; belegt ist sie durch die Petition und diese Aussage <span class="tag t-unb">Unbestätigt</span>.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-fz">
+  <p class="eyebrow">3 · Familienzentren</p>
+  <h2 id="h-fz">Vier Wege für 2027, heute auf der Tagesordnung</h2>
+  <p>20 Familienzentren in 18 Sozialräumen sollen 2027 mit 777.100 € auskommen statt mit 1.277.100 €. Die Verträge mit den Trägern sind zum 31.12.2026 gekündigt. In Planregion 3 und 4 wechselt die Finanzierung von 80/20 auf 70/30, die Kommunen tragen dort also mehr; in Planregion 1 und 2 ändert sich nichts <span class="tag t-fakt">Fakt</span>.</p>
+  <figure>
+    <div class="chartbox"><svg viewBox="0 0 640 298" role="img" aria-labelledby="c2t c2d" class="chart"><title id="c2t">Mittel für die Familienzentren 2027: Vorschläge im Vergleich</title><desc id="c2d">Ansatz 2026: 1.277.100 Euro. Verwaltung 2027: 777.100 Euro. Antrag 2026/403: 1.000.000 Euro. Änderungsantrag 2026/414: 1.277.100 Euro. Der CDU-Antrag 2026/416 nennt keinen Betrag.</desc><line x1="12.0" x2="12.0" y1="10" y2="274" class="grid"/><text x="12.0" y="292" class="tick" text-anchor="start">0 T€</text><line x1="145.0" x2="145.0" y1="10" y2="274" class="grid"/><text x="145.0" y="292" class="tick" text-anchor="middle">350 T€</text><line x1="278.0" x2="278.0" y1="10" y2="274" class="grid"/><text x="278.0" y="292" class="tick" text-anchor="middle">700 T€</text><line x1="411.0" x2="411.0" y1="10" y2="274" class="grid"/><text x="411.0" y="292" class="tick" text-anchor="middle">1.050 T€</text><line x1="544.0" x2="544.0" y1="10" y2="274" class="grid"/><text x="544.0" y="292" class="tick" text-anchor="end">1.400 T€</text><text x="12" y="24" class="lab">Ansatz 2026</text><rect x="12" y="32" width="485.3" height="20" class="o-ref"><title>Ansatz 2026: 1.277.100 €</title></rect><text x="503.3" y="47" class="val">1.277.100 €</text><text x="12" y="67" class="note">bisheriger Ansatz</text><text x="12" y="90" class="lab">Verwaltung 2027</text><rect x="12" y="98" width="295.3" height="20" class="o-cut"><title>Verwaltung 2027: 777.100 €</title></rect><text x="313.3" y="113" class="val">777.100 €</text><text x="12" y="133" class="note">Sparvorgabe AG Haushalt umgesetzt</text><text x="12" y="156" class="lab">2026/403 SPD + BVB/FW</text><rect x="12" y="164" width="380.0" height="20" class="o-mid"><title>2026/403 SPD + BVB/FW: 1.000.000 €</title></rect><text x="398.0" y="179" class="val">1.000.000 €</text><text x="12" y="199" class="note">+222.900 € aus Kreisentwicklungsbudget</text><text x="12" y="222" class="lab">2026/414 Linke/Piraten/Tierschutz</text><rect x="12" y="230" width="485.3" height="20" class="o-full"><title>2026/414 Linke/Piraten/Tierschutz: 1.277.100 €</title></rect><text x="503.3" y="245" class="val">1.277.100 €</text><text x="12" y="265" class="note">Erhalt, Deckung u. a. über Tourismuszuschüsse</text></svg></div>
+    <figcaption>Quellen: J/2026/026, Anträge 2026/403, 2026/414. Der CDU-Änderungsantrag 2026/416 verlangt, die Verträge zwölf Monate zu den bisherigen Konditionen fortzuführen, nennt aber keinen Betrag; er fehlt deshalb im Diagramm.</figcaption>
+  </figure>
+  <p>Der Kreis startet im Oktober 2026 eine neue Evaluation der Familienzentren mit Wirksamkeitsindikatoren, verbindlich ab Januar 2027 <span class="tag t-fakt">Fakt</span>. Gemessen wird also erst nach der Kürzungsentscheidung, obwohl der Kreis „Wirkungsorientierung“ selbst als Leitlinie seiner Haushaltskonsolidierung festgelegt hat <span class="tag t-abl">Ableitung</span>.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-pr4">
+  <p class="eyebrow">4 · Planregion 4</p>
+  <h2 id="h-pr4">Bad Belzig und Umgebung trifft es doppelt</h2>
+  <div class="duo">
+    <div class="glass">
+      <h3>Belegt</h3>
+      <p>Planregion 4 umfasst u. a. Bad Belzig, Brück, Niemegk, Treuenbrietzen und Wiesenburg <span class="tag t-fakt">Fakt</span>. Hier wechseln die Familienzentren auf 70/30, hier sitzt die Koordinationsstelle beim Belziger Forum (30 Std./Woche), hier liegen die Krause-Tschetschog-Oberschule und die Grundschule Wiesenburg, zwei der drei Startchancen-Schulen des Kreises <span class="tag t-fakt">Fakt</span>. In Bad Belzig entsteht eine neue Gemeinschaftsunterkunft <span class="tag t-fakt">Fakt</span>.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-labelledby="c3t c3d" class="chart chart-sm"><title id="c3t">Familienbildungsangebote 2025 nach Planregion</title><desc id="c3d">Planregion 1: 32, Planregion 2: 19, Planregion 3: 4, Planregion 4: 22 Angebote.</desc><line x1="34" x2="310" y1="156.0" y2="156.0" class="grid"/><text x="28" y="160.0" class="tick" text-anchor="end">0</text><line x1="34" x2="310" y1="121.0" y2="121.0" class="grid"/><text x="28" y="125.0" class="tick" text-anchor="end">10</text><line x1="34" x2="310" y1="86.0" y2="86.0" class="grid"/><text x="28" y="90.0" class="tick" text-anchor="end">20</text><line x1="34" x2="310" y1="51.0" y2="51.0" class="grid"/><text x="28" y="55.0" class="tick" text-anchor="end">30</text><line x1="34" x2="310" y1="16.0" y2="16.0" class="grid"/><text x="28" y="20.0" class="tick" text-anchor="end">40</text><rect x="54.0" y="44.0" width="44" height="112.0" class="s-land"><title>PR 1: 32 Angebote</title></rect><text x="76.0" y="38.0" class="val" text-anchor="middle">32</text><text x="76.0" y="174" class="tick" text-anchor="middle">PR 1</text><rect x="118.0" y="89.5" width="44" height="66.5" class="s-land"><title>PR 2: 19 Angebote</title></rect><text x="140.0" y="83.5" class="val" text-anchor="middle">19</text><text x="140.0" y="174" class="tick" text-anchor="middle">PR 2</text><rect x="182.0" y="142.0" width="44" height="14.0" class="s-kreis"><title>PR 3: 4 Angebote</title></rect><text x="204.0" y="136.0" class="val" text-anchor="middle">4</text><text x="204.0" y="174" class="tick" text-anchor="middle">PR 3</text><rect x="246.0" y="79.0" width="44" height="77.0" class="s-kreis"><title>PR 4: 22 Angebote</title></rect><text x="268.0" y="73.0" class="val" text-anchor="middle">22</text><text x="268.0" y="174" class="tick" text-anchor="middle">PR 4</text></svg>
+      <figcaption>Familienbildungsangebote 2025 je Planregion (FD 53, J/2026/021). Gold: Planregion 3 und 4, in denen die Familienzentren auf 70/30 wechseln.</figcaption>
+    </figure>
+  </div>
+  <p>Das Startchancen-Programm richtet sich an Schulen mit vielen sozial benachteiligten Schülerinnen und Schülern. Dass genau dort die familien- und integrationsnahe Infrastruktur davor schrumpft, ist ein Widerspruch zwischen den Ebenen <span class="tag t-wer">Wertung</span>. Eine Absicht belegt dieses Zusammentreffen nicht.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-kette">
+  <p class="eyebrow">5 · Wirkungskette</p>
+  <h2 id="h-kette">Empirie, Mechanismus, Übertragung</h2>
+  <ol class="chain">
+    <li><b>Empirie</b><span>PISA: Zuwanderungs- und Sozialabstände hängen an Herkunft und Familiensprache. IGLU: Lesedefizite sind mit zehn Jahren sichtbar. <span class="tag t-fakt">Fakt</span></span></li>
+    <li><b>Forschung</b><span>Kita-Besuch nützt den Kindern am meisten, die am seltensten hingehen; bei Kindern mit Zuwanderungsgeschichte gleicht er einen Rückstand von rund 12 Prozentpunkten in der Schulfähigkeit aus (Cornelissen u. a. 2018, Niedersachsen 1994–2002). <span class="tag t-fakt">Fakt</span></span></li>
+    <li><b>Mechanismus</b><span>Der Engpass ist der Zugang: Familien, die Förderung am meisten brauchen, erreichen sie am schwersten. <span class="tag t-abl">Ableitung</span></span></li>
+    <li><b>Übertragung</b><span>Familienzentren und Koordination sind Zugangsinfrastruktur zwischen Familie, Kita, Sprachkurs und Beratung. <span class="tag t-mod">Modell</span></span></li>
+    <li class="counter"><b>Gegenbefund</b><span>Zusätzliche Sprachkurse ohne Einbettung zeigten in Baden-Württemberg keinen Mehreffekt (EVAS 2007). Familienbezogene Prävention wirkt im deutschsprachigen Raum klein: d = 0,31, auf das Verhalten der Kinder 0,20, kaum Nachuntersuchungen über ein Jahr (Weiss, Schmucker, Lösel 2022). <span class="tag t-fakt">Fakt</span> <span class="tag t-ums">Umstritten</span></span></li>
+  </ol>
+</section>
+
+<section class="stack" aria-labelledby="h-calc">
+  <p class="eyebrow">6 · Rechenschwelle</p>
+  <h2 id="h-calc">Wie viele teure Fälle müsste Prävention verhindern?</h2>
+  <p>Ein stationärer Jugendhilfefall kostete den Kreis 2025 rechnerisch rund 38.900 € im Jahr (Aufwand Vollzeitpflege und Heimerziehung geteilt durch 420 stationäre Hilfen) <span class="tag t-sch">Schätzung</span>. Daraus folgt eine Schwelle: so viele Fälle pro Jahr müssten vermieden werden, damit sich die Kürzung rechnerisch nicht lohnt <span class="tag t-mod">Modell</span>.</p>
+  <div class="glass calc">
+    <label for="kostenFall">Kosten je stationärem Fall und Jahr: <span id="kostenOut" class="mono">38.900 €</span></label>
+    <input type="range" id="kostenFall" min="25000" max="70000" step="500" value="38900" aria-describedby="calcNote">
+    <div class="out" aria-live="polite">
+      <div><strong id="nFz">12,9</strong><span>Fälle für 500.000 € Familienzentren</span></div>
+      <div><strong id="nKo">3,6</strong><span>Fälle für 140.000 € Koordination</span></div>
+      <div><strong id="nBoth">16,5</strong><span>Fälle für beides zusammen</span></div>
+    </div>
+    <p id="calcNote" class="muted">Zum Vergleich: 2025 liefen im Mittel 1.129 Hilfen zur Erziehung (ohne § 35a), davon 420 stationär. Ob die Familienzentren Fälle in dieser Größenordnung verhindern, ist nicht gemessen. Für diese Wirkung ist keine empirisch abgesicherte Falsifikationsschwelle identifiziert.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Relation</th><th scope="col" class="num">Wert</th></tr></thead>
+      <tbody>
+        <tr><td>Koordinationsstellen (140.000 €) / Aufwendungen Kreis 2026 (692,7 Mio. €)</td><td class="num">0,020 %</td></tr>
+        <tr><td>Koordinationsstellen / Defizit 2026 (27,261 Mio. €)</td><td class="num">0,51 %</td></tr>
+        <tr><td>Kürzung Familienzentren (500.000 €) / Defizit 2026</td><td class="num">1,83 %</td></tr>
+        <tr><td>Kürzung Familienzentren / Konsolidierungsvorschläge 2027 (über 8 Mio. €)</td><td class="num">6,2 %</td></tr>
+        <tr><td>Kreis-Eigenmittel SIM-Projekt (927.600 €) / Defizit 2026</td><td class="num">3,4 %</td></tr>
+        <tr><td>Rest Kreisentwicklungsbudget nach Antrag 2026/403 (350.000 − 222.900 €)</td><td class="num">127.100 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack" aria-labelledby="h-stress">
+  <p class="eyebrow">7 · Dialektischer Stresstest</p>
+  <h2 id="h-stress">Die stärkste Gegenposition</h2>
+  <div class="duo">
+    <div class="glass">
+      <h3>Für die Kürzung</h3>
+      <ul class="src">
+        <li>Defizit 27,3 Mio. €, Kassenkredit, Haushaltssperre; Pflichtaufgaben haben Vorrang. <span class="tag t-fakt">Fakt</span></li>
+        <li>Für die Koordinationsstellen liegt kein Wirkungsnachweis vor. <span class="tag t-fakt">Fakt</span></li>
+        <li>Der Kreis hat den Ausstieg des Landes 2025 bereits mit eigenem Geld aufgefangen. <span class="tag t-abl">Ableitung</span></li>
+        <li>Mehr Geld für Sprachprogramme ist nicht automatisch mehr Bildung (EVAS). <span class="tag t-fakt">Fakt</span></li>
+        <li>Die Familienzentren bleiben bestehen, mit mindestens 25 Std. Fachkraft. <span class="tag t-fakt">Fakt</span></li>
+      </ul>
+    </div>
+    <div class="glass">
+      <h3>Gegenprüfung</h3>
+      <ul class="src">
+        <li>Der Kreis misst die Wirkung erst nach der Entscheidung und widerspricht damit seiner eigenen Leitlinie. <span class="tag t-abl">Ableitung</span></li>
+        <li>Planregion 4 trägt zwei Kürzungen in der Region mit zwei Startchancen-Schulen. <span class="tag t-fakt">Fakt</span> <span class="tag t-wer">Wertung</span></li>
+        <li>927.600 € jährlich für Arbeitsgelegenheiten sind eine politische Priorität, keine Haushaltsnotwendigkeit. <span class="tag t-wer">Wertung</span></li>
+        <li>EVAS betrifft Zusatzkurse, nicht Zugangsstrukturen; der Nullbefund lässt sich so wenig übertragen wie ein Wirkungsbefund. <span class="tag t-abl">Ableitung</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="stack" aria-labelledby="h-rec">
+  <p class="eyebrow">8 · Handlungsimplikationen</p>
+  <h2 id="h-rec">Fünf Vorschläge, jeder mit seiner Grundlage</h2>
+  <ol class="recs">
+    <li><strong>Erst messen, dann kürzen.</strong> Eine Übergangsfinanzierung der Familienzentren für 2027, wie in 2026/403 oder 2026/416 angelegt, passt zur Leitlinie „Wirkungsorientierung“ des Kreises und zur eigenen Evaluation ab Oktober 2026. <span class="tag r-fach">Fachurteil</span></li>
+    <li><strong>Koordination aus dem Restbudget.</strong> Nach Antrag 2026/403 blieben 127.100 € im Kreisentwicklungsbudget frei, 91 % der Kosten beider Stellen. Ob das gewollt ist, entscheidet der Kreistag. <span class="tag r-norm">Normative Entscheidung</span></li>
+    <li><strong>Landesförderung KIM prüfen.</strong> Die Landesrichtlinie nennt ausdrücklich das Thema „kultur- und diversitätssensible Öffnung“. Ob Teile der Koordinationsarbeit mit 60 % ESF+ gefördert werden können, sollte die Verwaltung mit ILB und Innenministerium klären. <span class="tag r-fach">Fachurteil</span></li>
+    <li><strong>Planregion 4 als eine Kette denken.</strong> Startchancen-Teams an Oberschule Bad Belzig und Grundschule Wiesenburg, Familienzentrum, Koordinationsstelle und Sprachstandsfeststellung gemeinsam planen und gemeinsam messen. <span class="tag r-mod">Modellabhängig</span></li>
+    <li><strong>Für Winkel und SAM:</strong> mit dem Kohärenzargument auftreten, nicht mit der Behauptung, die Stellen verbesserten nachweislich PISA-Werte. <span class="tag r-norm">Normative Entscheidung</span></li>
+  </ol>
+</section>
+
+<section class="stack" aria-labelledby="h-termine">
+  <p class="eyebrow">9 · Termine</p>
+  <h2 id="h-termine">Wo entschieden wird</h2>
+  <ol class="dates">
+    <li class="now"><time datetime="2026-10-08">08.10.2026</time><span>Kreistag, 15:00, Kulturhaus Locktow: TOP 7.4 Familienzentren (2026/403, /414, /416), TOP 7.3 Beirat Arbeitsmarktintegration</span></li>
+    <li><time datetime="2026-10-22">22.10.2026</time><span>Ausschuss für Haushalt und Finanzen</span></li>
+    <li><time datetime="2026-10-23">23.10.2026</time><span>Ende der Unterschriftensammlung, Petition Koordinationsstellen (Stand mittags: 522, davon 361 von 1.900 zählend)</span></li>
+    <li><time datetime="2026-11-03">03.11.2026</time><span>Ausschuss für Bildung, Familie und Gesundheit</span></li>
+    <li><time datetime="2026-11-10">10.11.2026</time><span>Integrationsbeirat</span></li>
+    <li><time datetime="2026-11-17">17.11.2026</time><span>Ausschuss für Soziales, Arbeit und Migration</span></li>
+    <li><time datetime="2026-11-18">18.11.2026</time><span>Jugendhilfeausschuss</span></li>
+    <li><time datetime="2026-11-19">19.11.2026</time><span>Kreisausschuss</span></li>
+    <li><time datetime="2026-12-03">03.12.2026</time><span>Kreistag (Termin für den Haushaltsbeschluss 2027 nicht veröffentlicht gefunden)</span></li>
+  </ol>
+</section>
+
+<section class="stack" aria-labelledby="h-ledger">
+  <p class="eyebrow">Referenzen & Validierungspfade</p>
+  <h2 id="h-ledger">Claim-Ledger und Quellen</h2>
+  <details id="ledger">
+    <summary>Claim-Ledger: 16 Behauptungen mit Endstatus</summary>
+    <div class="tbl">
+      <table>
+        <thead><tr><th scope="col">ID</th><th scope="col">Claim</th><th scope="col">Befund</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>F01</td><td>„Das Land streicht Integrationsstellen“</td><td>Landes-Integrationsbudget Ende 2024 ausgelaufen; Stellenstreichung geht vom Kreis aus</td><td><span class="tag t-fakt">Fakt</span> teilweise</td></tr>
+          <tr><td>F02</td><td>Kreis streicht beide Koordinationsstellen</td><td>Petition und Ausschussaussage; kein öffentlicher Beschluss</td><td><span class="tag t-unb">Unbestätigt</span> Beschlusslage</td></tr>
+          <tr><td>F03</td><td>Koordination kostet 140.000 €</td><td>Verwaltungsantwort A/2025/039</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>F04</td><td>Familienzentren −500.000 € (−39 %)</td><td>J/2026/026, 2026/403</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>F05</td><td>PR 3+4: 80/20 → 70/30</td><td>J/2026/026; PR 1+2 unverändert, Grund nicht genannt</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>F06</td><td>2 von 3 Startchancen-Schulen in PR 4</td><td>MBJS-Liste (undatiert), FD 53</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>F07</td><td>Kreis-Eigenmittel Integration 2025 4,5-fach</td><td>340.000 vs. 75.864 € (Ansatz vs. IST)</td><td><span class="tag t-abl">Ableitung</span></td></tr>
+          <tr><td>F08</td><td>Rest Kreisentwicklungsbudget 127.100 €</td><td>2026/403 plus Rechnung</td><td><span class="tag t-abl">Ableitung</span></td></tr>
+          <tr><td>F09</td><td>SIM-Eigenanteil 927.600 € pro Jahr</td><td>2026/349; Fortführung laut A/2026/138 und 2026/398</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>F10</td><td>Familiensprache und Herkunft binden den Abstand</td><td>PISA 2025: 48–69 % statistisch</td><td><span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span></td></tr>
+          <tr><td>F11</td><td>Kita nützt Benachteiligten am meisten</td><td>Cornelissen u. a. 2018; Niedersachsen 1994–2002</td><td><span class="tag t-fakt">Fakt</span>, Übertragung offen</td></tr>
+          <tr><td>F12</td><td>Zusatz-Sprachkurse ohne Mehreffekt</td><td>EVAS 2007, Baden-Württemberg</td><td><span class="tag t-ums">Umstritten</span></td></tr>
+          <tr><td>F13</td><td>Familienprävention wirkt</td><td>d = 0,31; Kind 0,20; Small-Study-Effekte</td><td><span class="tag t-ums">Umstritten</span></td></tr>
+          <tr><td>F14</td><td>Familienzentren verhindern teure Hilfen</td><td>in Anträgen behauptet, nicht gemessen</td><td><span class="tag t-unb">Unbestätigt</span></td></tr>
+          <tr><td>F15</td><td>Schwelle ≈ 13 stationäre Fälle pro Jahr</td><td>Rechengröße aus FD-53-Daten</td><td><span class="tag t-mod">Modell</span></td></tr>
+          <tr><td>F16</td><td>„Brandenburger Standard“ in der Integration</td><td>Niederschrift Sozialausschuss 22.09.2026</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <details id="quellen">
+    <summary>Quellen (alle geöffnet; Kreis-Dokumente im Volltext gelesen)</summary>
+    <div>
+      <ul class="src">
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202622309100131">Antrag 2026/403 Familienzentren (SPD, BVB/FW)</a>, <a href="https://pm-belzig.gremien.info/submission?id=202620710100142">2026/414</a>, <a href="https://pm-belzig.gremien.info/submission?id=202620810100144">2026/416</a></li>
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202611308100012">J/2026/026 Konzeption und Finanzierung der Familienzentren</a></li>
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202621002100042">2026/319 Projekt „Haushaltsplanung verantwortungsvoll gestalten“</a></li>
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202612004100007">J/2026/021 Jahresgeschäftsbericht FD 53 (2025)</a></li>
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202622904100077">2026/349 SIM-Projekt</a>, <a href="https://pm-belzig.gremien.info/submission?id=202633009100041">A/2026/138</a></li>
+        <li><a href="https://pm-belzig.gremien.info/submission?id=202531702100004">A/2025/028 Integrationsbudget Brandenburg (mit Antwort)</a>, <a href="https://pm-belzig.gremien.info/submission?id=202530505100015">A/2025/039 ID 343 (mit Antwort)</a>, <a href="https://pm-belzig.gremien.info/submission?id=202530312100067">A/2025/091 freiwillige Leistungen</a></li>
+        <li><a href="https://pm-belzig.gremien.info/meeting/1833">Niederschrift Ausschuss für Haushalt und Finanzen 27.08.2026</a>; Niederschrift Ausschuss für Soziales, Arbeit und Migration 22.09.2026 (Ratsinformationssystem)</li>
+        <li><a href="https://www.potsdam-mittelmark.de/files/images/aktuelles-veranstaltungen/bekanntmachungen/amtlich/2026/september/Bekanntmachung_KT_2026-10-08.pdf">Bekanntmachung 14. Kreistag 08.10.2026</a></li>
+        <li><a href="https://www.openpetition.de/petition/online/keine-kuerzung-der-interkulturellen-arbeit-begegnung-toleranzarbeit-und-demokratie-schuetzen">Petition „Keine Kürzung der Interkulturellen Arbeit“</a></li>
+        <li><a href="https://bravors.brandenburg.de/verwaltungsvorschriften/soziooekonom_integration_2025">Landesrichtlinie sozioökonomische Integration (KIM/DfG) 2025</a>; <a href="https://bravors.brandenburg.de/verordnungen/sffv">SprachfestFörderverordnung</a></li>
+        <li><a href="https://mbjs-fachportal.brandenburg.de/sixcms/media.php/102/ausgewaehlte_schulen_fuers_startchancen-programm.pdf">MBJS: ausgewählte Startchancen-Schulen</a></li>
+        <li><a href="https://www.zib.education/fileadmin/Dokumente/PISA/PISA_2025/PISA2025-Zusammenfassung.pdf">PISA 2025 Zusammenfassung (ZIB/TUM)</a>; <a href="https://deutsches-schulportal.de/bildungswesen/die-zehn-wichtigsten-ergebnisse-der-pisa-studie-2025/">Deutsches Schulportal: zehn Ergebnisse</a></li>
+        <li><a href="https://ifs.ep.tu-dortmund.de/storages/ifs-ep/r/Downloads_allgemein/Handreichung_Presse_IGLU.pdf">IGLU 2021, IFS Dortmund</a></li>
+        <li><a href="https://www.christiandustmann.com/content/4-research/10-who-benefits-from-universal-childcare-estimating-marginal-returns-to-early-childcare-attendance/699979.pdf">Cornelissen, Dustmann, Raute, Schönberg (2018), Journal of Political Economy 126(6)</a></li>
+        <li><a href="https://www.ph-heidelberg.de/fileadmin/wp/wp-schoeler/Dokumente/EVAS_Bericht_3.pdf">EVAS Bericht 3 (2007), PH Heidelberg</a></li>
+        <li><a href="https://cris.fau.de/publications/278142475">Weiss, Schmucker, Lösel (2022), Int. Journal of Developmental Science 16(1–2)</a></li>
+      </ul>
+      <p class="muted">Rechenweg: alle Quoten, Relationen und Schwellen per Python aus den genannten Eingangswerten berechnet (Ausschöpfung 21,7 / 54,8 / 63,9 %; Mittelfrist Familienzentren −39,2 / −37,2 / −35,1 / −33,0 % gegenüber 2026; Landesquote SIM-Projekt 42,26 %).</p>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <p><a href="index.html">← Zur Übersicht der PISA-Serie</a></p>
+  <p>Projekt Sternenstaub · PISA-Serie · Sprint 1 von 3 · baut auf Sprint 0 „Befundlage und Quellenaudit“ auf.</p>
+  <p>Unabhängige Analyse. Nicht von Kreisverwaltung, Kreistag, Belziger Forum oder SAM e.V. verfasst oder geprüft. Der Ausgang der Kreistagssitzung vom 08.10.2026 ist nicht berücksichtigt.</p>
+</footer>
+</main>
+
+<dialog id="exo" aria-labelledby="exo-title">
+  <div class="inner">
+    <div class="head">
+      <h2 id="exo-title">Epistemisches Exoskelett</h2>
+      <button class="btn" type="button" id="exo-close">Schließen</button>
+    </div>
+    <p><strong>Geprüfte Nullhypothese:</strong> Die geplanten Kürzungen bei Familienzentren und interkultureller Koordination stehen nicht im Widerspruch zu dem, was PISA 2025 und die Bildungsforschung nahelegen. Ergebnis: für die Richtung verworfen, für die Größe der Wirkung nicht.</p>
+    <h3>Evidenzklassen</h3>
+    <dl class="classes">
+      <dt><span class="tag t-fakt">Fakt</span></dt><dd>direkt belegt; bei Sekundärzitaten als berichtet gekennzeichnet</dd>
+      <dt><span class="tag t-sch">Schätzung</span></dt><dd>Näherung aus belegten Größen mit benannter Unsicherheit</dd>
+      <dt><span class="tag t-abl">Ableitung</span></dt><dd>logisch oder rechnerisch aus Fakten gefolgert</dd>
+      <dt><span class="tag t-mod">Modell</span></dt><dd>Annahme über einen nicht gemessenen Zusammenhang</dd>
+      <dt><span class="tag t-proj">Projektion</span></dt><dd>Fortschreibung in die Zukunft</dd>
+      <dt><span class="tag t-ums">Umstritten</span></dt><dd>Fachstreit mit belegter Gegenposition</dd>
+      <dt><span class="tag t-wer">Wertung</span></dt><dd>normative Bewertung</dd>
+      <dt><span class="tag t-unb">Unbestätigt</span></dt><dd>trotz Recherche nicht auffindbar oder nicht einsehbar</dd>
+    </dl>
+    <h3>Zugriffsgrenzen</h3>
+    <ul class="src">
+      <li>Sparliste der AG Haushalt (23.06.2026) und Verwaltungsschreiben (14.09.2026) sind nicht öffentlich; bekannt nur über Zitate in den Anträgen.</li>
+      <li>Vorlage 2026/388 (Richtlinie Integrationsinitiativen 2027) wurde zurückgezogen und ist nicht abrufbar.</li>
+      <li>OECD-Länderbericht per robots.txt gesperrt; PISA-Zahlen über die nationale Zusammenfassung und das Schulportal.</li>
+      <li>Kreis-Daten zur Sprachstandsfeststellung nicht veröffentlicht gefunden.</li>
+    </ul>
+    <h3>Korrekturen und bewusste Auslassungen</h3>
+    <ul class="src">
+      <li>Die Ausgangsthese „das Land streicht“ wurde präzisiert: Das Land hat die Förderrichtlinie beendet, die Stellen streicht der Kreis.</li>
+      <li>Raten der Jugendhilfe im Strafverfahren nach Sozialräumen wurden nicht als Bedarfsindikator verwendet; sie messen etwas anderes und würden Orte stigmatisieren.</li>
+      <li>Die nationale Zuwanderungsquote (PISA 2022: 38,7 %) und die OECD-Quote (PISA 2025: 29 %) folgen unterschiedlichen Definitionen und werden nicht verglichen.</li>
+    </ul>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+  // Exoskelett-Dialog
+  var dlg = document.getElementById("exo");
+  var openBtn = document.getElementById("exo-open");
+  var closeBtn = document.getElementById("exo-close");
+  if (dlg && typeof dlg.showModal === "function") {
+    openBtn.addEventListener("click", function () { dlg.showModal(); closeBtn.focus(); });
+    closeBtn.addEventListener("click", function () { dlg.close(); openBtn.focus(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) { dlg.close(); } });
+  } else if (openBtn) {
+    openBtn.hidden = true;
+  }
+
+  // Rechenschwelle
+  var nf = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+  var ef = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+  var slider = document.getElementById("kostenFall");
+  function upd() {
+    var c = Number(slider.value);
+    document.getElementById("kostenOut").textContent = ef.format(c) + " €";
+    document.getElementById("nFz").textContent = nf.format(500000 / c);
+    document.getElementById("nKo").textContent = nf.format(140000 / c);
+    document.getElementById("nBoth").textContent = nf.format(640000 / c);
+  }
+  if (slider) { slider.addEventListener("input", upd); upd(); }
+
+  // Druck: Ledger und Quellen aufklappen
+  window.addEventListener("beforeprint", function () {
+    document.querySelectorAll("details").forEach(function (d) { d.open = true; });
+  });
+
+  // Magnetischer Sternenstaub
+  var cv = document.getElementById("sky");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!cv || reduce) { return; }
+  var ctx = cv.getContext("2d");
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var pts = [];
+  var mouse = { x: -9999, y: -9999 };
+  function size() {
+    cv.width = Math.floor(innerWidth * dpr);
+    cv.height = Math.floor(innerHeight * dpr);
+    var n = Math.min(140, Math.floor(innerWidth * innerHeight / 9000));
+    pts = [];
+    for (var i = 0; i < n; i++) {
+      pts.push({ x: Math.random() * cv.width, y: Math.random() * cv.height, vx: (Math.random() - .5) * .15 * dpr, vy: (Math.random() - .5) * .15 * dpr, r: (Math.random() * 1.2 + .3) * dpr, g: Math.random() < .18 });
+    }
+  }
+  size();
+  addEventListener("resize", size);
+  addEventListener("pointermove", function (e) { mouse.x = e.clientX * dpr; mouse.y = e.clientY * dpr; });
+  function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      var dx = mouse.x - p.x, dy = mouse.y - p.y, d2 = dx * dx + dy * dy, R = 160 * dpr;
+      if (d2 < R * R) { var f = (1 - Math.sqrt(d2) / R) * .02; p.vx += dx * f * .02; p.vy += dy * f * .02; }
+      p.vx *= .985; p.vy *= .985;
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x += cv.width; if (p.x > cv.width) p.x -= cv.width;
+      if (p.y < 0) p.y += cv.height; if (p.y > cv.height) p.y -= cv.height;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.g ? "rgba(217,163,92,.85)" : "rgba(244,234,217,.6)";
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

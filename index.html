@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PISA seit 2000</title>
+<meta name="description" content="Die PISA-Entwicklung in Deutschland seit 2000: drei geprüfte Sprints von der Studie über die Schulstufen bis in den Kreistag Potsdam-Mittelmark, zusammengeführt zu einer Bildungskette.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+/* Layout: eine Lesespalte (Dossier) mit eingeschobenen Instrumenten; Sternenstaub Dark Ambient, bewusst einthemig dunkel, Druck hell */
+:root {
+  --void: #060714;
+  --nebula: #10152b;
+  --card: #141a33;
+  --line: #2a3156;
+  --parchment: #f4ead9;
+  --muted: #c8bea9;
+  --gold: #d9a35c;
+  --teal: #8fd3c1;
+  --sky: #9cc4f2;
+  --violet: #c9b3f5;
+  --rose: #f0a8a0;
+  --land: #5f86c9;
+  --kreis: #d9a35c;
+  --eigen: #8a8fb0;
+  --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --s-1: 0.875rem; --s0: 1.0625rem; --s1: 1.25rem; --s2: 1.6rem; --s3: 2.2rem; --s4: clamp(2.4rem, 7vw, 4.2rem);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--void); }
+body {
+  margin: 0; background: var(--void); color: var(--parchment);
+  font-family: var(--f-body); font-size: var(--s0); line-height: 1.62;
+  padding-inline: 16px; padding-block: 0;
+}
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
+.wrap { position: relative; z-index: 1; max-width: 46rem; margin-inline: auto; padding-block: 2.5rem 4rem; display: grid; gap: 3.2rem; }
+a { color: var(--sky); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; line-height: 1.15; margin: 0; }
+h2 { font-size: var(--s3); }
+h3 { font-size: var(--s1); }
+p { margin: 0; }
+.stack { display: grid; gap: 1rem; }
+.eyebrow { font-family: var(--f-mono); font-size: var(--s-1); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* Kopf */
+header.hero { display: grid; gap: 1.1rem; padding-top: 1rem; }
+header.hero h1 { font-size: var(--s4); font-weight: 800; letter-spacing: -0.01em; }
+header.hero h1 span { display: block; font-weight: 400; font-style: italic; font-size: .45em; color: var(--muted); margin-top: .5rem; letter-spacing: 0; }
+.status { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pill { font-family: var(--f-mono); font-size: var(--s-1); border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; background: var(--nebula); }
+.pill.live { border-color: var(--rose); color: var(--rose); }
+.toolbar { display: flex; flex-wrap: wrap; gap: .6rem; }
+button.btn { font: inherit; font-size: var(--s-1); font-family: var(--f-mono); background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 6px; padding: .45rem .9rem; cursor: pointer; }
+button.btn:hover { background: rgba(217,163,92,.12); }
+
+/* These-Block */
+.thesis { border-left: 3px solid var(--gold); padding-left: 1.1rem; display: grid; gap: .8rem; }
+.thesis p.big { font-family: var(--f-display); font-size: var(--s2); line-height: 1.3; }
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+.glass { background: rgba(20,26,51,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem; display: grid; gap: .6rem; min-width: 0; }
+.glass h3 { font-size: var(--s0); font-family: var(--f-mono); font-weight: 600; letter-spacing: .04em; color: var(--gold); text-transform: uppercase; }
+
+/* Evidenz-Tags */
+.tag { display: inline-block; font-family: var(--f-mono); font-size: .78rem; line-height: 1.3; padding: .05rem .4rem; border: 1px solid currentColor; border-radius: 4px; white-space: nowrap; vertical-align: .08em; }
+.t-fakt { color: var(--teal); }
+.t-abl { color: var(--sky); }
+.t-mod { color: var(--violet); }
+.t-sch { color: var(--gold); }
+.t-wer { color: var(--rose); }
+.t-ums { color: var(--rose); border-style: dashed; }
+.t-unb { color: var(--muted); border-style: dotted; }
+.t-proj { color: var(--violet); border-style: dashed; }
+.r-ev { color: var(--teal); } .r-mod { color: var(--violet); } .r-fach { color: var(--sky); } .r-norm { color: var(--rose); }
+
+/* Tabellen */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: rgba(16,21,43,.8); }
+table { border-collapse: collapse; width: 100%; font-size: var(--s-1); font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 600; color: var(--gold); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; background: var(--nebula); }
+tr:last-child td { border-bottom: 0; }
+td.num { text-align: right; white-space: nowrap; }
+
+/* Charts */
+figure { margin: 0; display: grid; gap: .5rem; min-width: 0; }
+figcaption { font-size: var(--s-1); color: var(--muted); }
+.chart { width: 100%; height: auto; max-width: 100%; display: block; }
+.chart-sm { max-width: 22rem; min-width: 0 !important; }
+.chartbox { overflow-x: auto; }
+@media (max-width: 600px) { .chartbox .chart { min-width: 560px; } }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { stroke: var(--muted); stroke-width: 1; }
+.chart .refline { stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+.chart .reflabel { fill: var(--gold); font: 12px var(--f-mono); }
+.chart .tick { fill: var(--muted); font: 12px var(--f-mono); }
+.chart .val { fill: var(--parchment); font: 600 12px var(--f-mono); }
+.chart .lab { fill: var(--parchment); font: 13px var(--f-body); }
+.chart .note { fill: var(--muted); font: 11.5px var(--f-body); }
+.chart .s-land { fill: var(--land); }
+.chart .s-kreis { fill: var(--kreis); }
+.chart .s-eigen { fill: var(--eigen); }
+.chart .o-ref { fill: var(--eigen); }
+.chart .o-cut { fill: var(--rose); }
+.chart .o-mid { fill: var(--gold); }
+.chart .o-full { fill: var(--teal); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: var(--s-1); color: var(--muted); }
+.legend i { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; margin-right: .35rem; vertical-align: -.08em; }
+
+/* Kette */
+ol.chain { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; counter-reset: c; }
+ol.chain li { display: grid; grid-template-columns: 8.2rem 1fr; gap: .8rem; align-items: start; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: rgba(16,21,43,.75); }
+ol.chain li b { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+ol.chain li.counter { border-style: dashed; border-color: var(--rose); }
+@media (max-width: 520px) { ol.chain li { grid-template-columns: 1fr; gap: .2rem; } }
+
+/* Rechner */
+.calc { display: grid; gap: 1rem; }
+.calc label { font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); }
+.calc input[type=range] { width: 100%; accent-color: var(--gold); }
+.out { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .8rem; }
+.out div { border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem; display: grid; gap: .1rem; background: var(--nebula); }
+.out strong { font-family: var(--f-display); font-size: var(--s3); font-weight: 600; color: var(--parchment); font-variant-numeric: tabular-nums; }
+.out span { font-size: var(--s-1); color: var(--muted); }
+
+/* Zeitachse */
+ol.dates { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-left: 1px solid var(--line); }
+ol.dates li { display: grid; grid-template-columns: 6.6rem 1fr; gap: .8rem; padding: .45rem 0 .45rem 1rem; position: relative; }
+ol.dates li::before { content: ""; position: absolute; left: -5px; top: .95rem; width: 9px; height: 9px; border-radius: 50%; background: var(--nebula); border: 1px solid var(--gold); }
+ol.dates li.now::before { background: var(--rose); border-color: var(--rose); }
+ol.dates time { font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); padding-top: .12rem; }
+
+/* Empfehlungen */
+ol.recs { margin: 0; padding-left: 1.3rem; display: grid; gap: .9rem; }
+ol.recs li::marker { font-family: var(--f-mono); color: var(--gold); }
+
+details { border: 1px solid var(--line); border-radius: 10px; background: rgba(16,21,43,.8); }
+details > summary { cursor: pointer; padding: .8rem 1rem; font-family: var(--f-mono); font-size: var(--s-1); color: var(--gold); }
+details > div { padding: 0 1rem 1rem; display: grid; gap: .8rem; }
+ul.src { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; font-size: var(--s-1); overflow-wrap: anywhere; }
+
+/* Exoskelett */
+dialog#exo { max-width: min(44rem, calc(100vw - 32px)); width: 100%; max-height: 86vh; border: 1px solid var(--gold); border-radius: 12px; background: var(--nebula); color: var(--parchment); padding: 0; }
+dialog#exo::backdrop { background: rgba(6,7,20,.82); }
+dialog#exo .inner { padding: 1.4rem 1.4rem 1.6rem; display: grid; gap: 1rem; overflow-y: auto; max-height: 86vh; }
+dialog#exo .head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+dl.classes { display: grid; grid-template-columns: max-content 1fr; gap: .45rem .9rem; margin: 0; font-size: var(--s-1); }
+dl.classes dt { white-space: nowrap; }
+dl.classes dd { margin: 0; color: var(--muted); }
+@media (max-width: 520px) { dl.classes { grid-template-columns: 1fr; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+footer { font-size: var(--s-1); color: var(--muted); border-top: 1px solid var(--line); padding-top: 1rem; display: grid; gap: .4rem; }
+
+@media (prefers-reduced-motion: reduce) { #sky { display: none; } }
+
+/* Druckfassung: hell, ohne Atmosphäre, Instrumente als Stand */
+@media print {
+  :root { color-scheme: light; }
+  html, body { background: #fff !important; color: #1a1a1a !important; font-size: 10.5pt; padding: 0; }
+  #sky, .toolbar, dialog, .no-print { display: none !important; }
+  .wrap { max-width: none; gap: 1.2rem; padding: 0; }
+  h1, h2, h3, .out strong { color: #1a1a1a !important; }
+  .eyebrow, th, details > summary, ol.dates time, .calc label, .glass h3, ol.chain li b { color: #5a3d12 !important; }
+  .muted, figcaption, footer, .legend, dl.classes dd, .out span { color: #4a4a4a !important; }
+  .glass, .tbl, details, ol.chain li, .out div, .pill { background: #fff !important; border-color: #bbb !important; backdrop-filter: none !important; }
+  th { background: #f2efe8 !important; }
+  .tag { color: #1a1a1a !important; }
+  .chart .tick, .chart .note, .chart .lab, .chart .val, .chart .reflabel { fill: #1a1a1a !important; }
+  .chart .grid { stroke: #ddd !important; }
+  figure, tr, ol.chain li, .glass, ol.dates li { break-inside: avoid; }
+  h2, h3, .eyebrow { break-after: avoid; }
+  .chartbox .chart { min-width: 0 !important; }
+  .pill.live { color: #1a1a1a !important; }
+  .chart .l-read { stroke: #2b5d9e !important; fill: #2b5d9e !important; }
+  .chart .l-math, .chart .l-se { stroke: #8a5a12 !important; fill: #8a5a12 !important; }
+  .chart path.l-read, .chart path.l-math, .chart polyline.l-se { fill: none !important; }
+  .chart .dot { stroke: #fff !important; }
+  .chart .valdark { fill: #1a1a1a !important; }
+  a { color: #1a1a1a; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #4a4a4a; overflow-wrap: anywhere; }
+}
+
+/* Sprint 2: Diagramm-Serien */
+.chart .line { fill: none; stroke-width: 2.5; }
+.chart .dashed { stroke-dasharray: 7 5; }
+.chart .l-read { stroke: var(--sky); fill: var(--sky); }
+.chart .l-math { stroke: var(--gold); fill: var(--gold); }
+.chart path.l-read, .chart path.l-math, .chart polyline.l-se { fill: none; }
+.chart .l-se { stroke: var(--gold); fill: var(--gold); }
+.chart .dot { stroke: var(--void); stroke-width: 1.5; }
+.chart .area { fill: var(--gold); opacity: .14; }
+.chart .s-k4 { fill: var(--sky); }
+.chart .s-k15 { fill: var(--rose); }
+.chart .g-ohne { fill: var(--sky); }
+.chart .g-zwei { fill: var(--violet); }
+.chart .g-erst { fill: var(--rose); }
+.chart .s-bb { fill: var(--gold); }
+.chart .s-d { fill: var(--eigen); }
+.chart .s-within { fill: var(--sky); }
+.chart .s-comp { fill: var(--rose); }
+.chart .valdark { fill: var(--void); font: 600 12px var(--f-mono); }
+/* Serie: Navigation und Knotenpunkt-Bausteine */
+nav.series ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+nav.series a { display: inline-block; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; background: var(--nebula); }
+nav.series a:hover { color: var(--parchment); border-color: var(--gold); }
+nav.series a[aria-current="page"] { color: var(--void); background: var(--gold); border-color: var(--gold); font-weight: 600; }
+ol.keys { margin: 0; padding-left: 1.4rem; display: grid; gap: 1rem; }
+ol.keys li::marker { font-family: var(--f-display); font-weight: 600; color: var(--gold); }
+ol.pipe { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .9rem; }
+ol.pipe .stage { position: relative; border: 1px solid var(--line); border-radius: 10px; padding: .9rem .85rem 1rem; background: rgba(16,21,43,.85); display: grid; gap: .45rem; align-content: start; min-width: 0; }
+ol.pipe .stage:not(:last-child)::after { content: "→"; position: absolute; right: -.85rem; top: 2.2rem; color: var(--gold); font-family: var(--f-mono); font-size: 1rem; }
+ol.pipe .stage h3 { font-size: var(--s0); }
+ol.pipe .st-age { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; color: var(--gold); }
+ol.pipe .stage p.st-fig { font-family: var(--f-display); font-size: var(--s3); font-weight: 600; line-height: 1; }
+ol.pipe .stage p { font-size: var(--s-1); }
+ol.pipe .st-local { border-top: 1px solid var(--line); padding-top: .5rem; color: var(--muted); }
+ol.pipe .st-local.cut { border-top: 3px solid var(--rose); color: var(--parchment); }
+ol.pipe .st-local.invest { border-top: 3px solid var(--gold); color: var(--parchment); }
+ol.pipe .stage.gap { border-style: dashed; opacity: .8; }
+@media (min-width: 1000px) { ol.pipe { width: min(70rem, calc(100vw - 64px)); margin-left: calc(50% - min(35rem, 50vw - 32px)); } }
+@media (max-width: 760px) {
+  ol.pipe { grid-template-columns: 1fr; }
+  ol.pipe .stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1.05rem; }
+}
+ul.sprints { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+a.sprint { display: grid; gap: .5rem; height: 100%; padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(20,26,51,.72); color: var(--parchment); text-decoration: none; }
+a.sprint:hover { border-color: var(--gold); }
+a.sprint p { font-size: var(--s-1); color: var(--muted); }
+a.sprint .card-link { font-family: var(--f-mono); font-size: .8rem; color: var(--sky); }
+ul.bridges { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+ul.bridges li { display: grid; grid-template-columns: 13rem 1fr; gap: .8rem; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: rgba(16,21,43,.75); }
+ul.bridges li a { font-family: var(--f-display); font-weight: 600; }
+ul.bridges li span { font-size: var(--s-1); color: var(--muted); }
+@media (max-width: 560px) { ul.bridges li { grid-template-columns: 1fr; gap: .2rem; } }
+.chart .l-sci { stroke: var(--teal); fill: var(--teal); }
+.chart path.l-sci { fill: none; }
+@media print {
+  nav.series, ol.pipe .stage::after { display: none !important; }
+  ol.pipe { grid-template-columns: 1fr 1fr !important; width: auto !important; margin-left: 0 !important; }
+  ol.pipe .stage, a.sprint, ul.bridges li { background: #fff !important; border-color: #bbb !important; break-inside: avoid; }
+  ol.pipe .st-local, a.sprint p, ul.bridges li span { color: #4a4a4a !important; }
+  ol.pipe .st-local.cut { border-top-color: #b4473c !important; color: #1a1a1a !important; }
+  ol.pipe .st-local.invest { border-top-color: #8a5a12 !important; color: #1a1a1a !important; }
+  ol.pipe .st-age, ol.keys li::marker { color: #5a3d12 !important; }
+  a.sprint, ol.pipe .st-fig { color: #1a1a1a !important; }
+  .chart .l-sci { stroke: #1f6f5e !important; fill: #1f6f5e !important; }
+  .chart path.l-sci { fill: none !important; }
+}
+
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Projekt Sternenstaub · PISA-Serie · Knotenpunkt</p>
+  <nav class="series" aria-label="PISA-Serie"><ul><li><a href="index.html" aria-current="page">Übersicht</a></li><li><a href="fundament-statt-dach.html">Sprint 1 · Fundament statt Dach</a></li><li><a href="wo-geht-es-verloren.html">Sprint 2 · Wo geht es verloren?</a></li></ul></nav>
+  <h1>Die PISA-Entwicklung in Deutschland seit 2000<span>Eine Serie in drei Sprints: von der Studie über die Schulstufen bis in den Kreistag</span></h1>
+  <div class="status">
+    <span class="pill">3 Sprints · 43 geprüfte Behauptungen</span>
+    <span class="pill">Stand 08.10.2026, 18:45</span>
+  </div>
+  <div class="toolbar">
+    <button class="btn" type="button" id="exo-open" aria-haspopup="dialog" aria-controls="exo">Epistemisches Exoskelett öffnen</button>
+  </div>
+</header>
+
+<section class="stack" aria-labelledby="h-kern">
+  <p class="eyebrow">Kurzfassung für Entscheider</p>
+  <h2 id="h-kern">Drei Sätze, die die Daten tragen</h2>
+  <ol class="keys">
+    <li><strong>Es ging nicht seit 2000 bergab.</strong> Bis 2012 stiegen die Werte, danach fielen sie zehn bis dreizehn Jahre lang. Lesen liegt 2025 mit 465 Punkten 19 Punkte unter dem PISA-Schock von 2000. <span class="tag t-fakt">Fakt</span></li>
+    <li><strong>Das Niveau ist ein OECD-Problem, die Schere ein deutsches.</strong> Von 2022 auf 2025 verlor Deutschland fast genau so viel wie der OECD-Schnitt. Der Abstand zwischen sozial privilegierten und benachteiligten Jugendlichen wuchs dagegen seit 2015, während er im OECD-Schnitt kleiner wurde. <span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span></li>
+    <li><strong>Es beginnt bei der Sprache, lange vor PISA.</strong> Jedes fünfte Brandenburger Einschulkind hat einen Sprachbefund, die Lesewerte in Klasse 4 sinken seit 2006, und Brandenburgs Grundschulen hatten 2016 bis 2021 die stärksten Rückgänge aller Länder, auch bei Kindern ohne Zuwanderungsgeschichte. <span class="tag t-fakt">Fakt</span></li>
+  </ol>
+  <figure>
+    <div class="chartbox"><svg viewBox="0 0 640 320" role="img" aria-labelledby="cpt cpd" class="chart"><title id="cpt">PISA-Mittelwerte Deutschland 2000 bis 2025</title><desc id="cpd">Lesen: 484 im Jahr 2000, Höchststand 509 im Jahr 2015, 465 im Jahr 2025. Mathematik: 503 im Jahr 2003, Höchststand 514 im Jahr 2012, 464 im Jahr 2025. Naturwissenschaften: 516 im Jahr 2006, Höchststand 524 im Jahr 2012, 486 im Jahr 2025.</desc><line x1="48" x2="520" y1="266.4" y2="266.4" class="grid"/><text x="40" y="270.4" class="tick" text-anchor="end">460</text><line x1="48" x2="520" y1="231.2" y2="231.2" class="grid"/><text x="40" y="235.2" class="tick" text-anchor="end">470</text><line x1="48" x2="520" y1="196.0" y2="196.0" class="grid"/><text x="40" y="200.0" class="tick" text-anchor="end">480</text><line x1="48" x2="520" y1="160.8" y2="160.8" class="grid"/><text x="40" y="164.8" class="tick" text-anchor="end">490</text><line x1="48" x2="520" y1="125.6" y2="125.6" class="grid"/><text x="40" y="129.6" class="tick" text-anchor="end">500</text><line x1="48" x2="520" y1="90.4" y2="90.4" class="grid"/><text x="40" y="94.4" class="tick" text-anchor="end">510</text><line x1="48" x2="520" y1="55.2" y2="55.2" class="grid"/><text x="40" y="59.2" class="tick" text-anchor="end">520</text><line x1="48" x2="520" y1="20.0" y2="20.0" class="grid"/><text x="40" y="24.0" class="tick" text-anchor="end">530</text><text x="57.1" y="304" class="tick" text-anchor="middle">2000</text><text x="111.5" y="304" class="tick" text-anchor="middle">2003</text><text x="166.0" y="304" class="tick" text-anchor="middle">2006</text><text x="220.5" y="304" class="tick" text-anchor="middle">2009</text><text x="274.9" y="304" class="tick" text-anchor="middle">2012</text><text x="329.4" y="304" class="tick" text-anchor="middle">2015</text><text x="383.8" y="304" class="tick" text-anchor="middle">2018</text><text x="456.5" y="304" class="tick" text-anchor="middle">2022</text><text x="510.9" y="304" class="tick" text-anchor="middle">2025</text><line x1="274.9" x2="274.9" y1="20" y2="284" class="refline"/><text x="280.9" y="32" class="reflabel">Wende 2012/2015</text><path d="M57.1,181.9 L111.5,157.3 L166.0,143.2 L220.5,136.2 L274.9,97.4 L329.4,93.9 L383.8,132.6 L456.5,196.0 L510.9,248.8" class="line l-read"/><circle cx="57.1" cy="181.9" r="3.5" class="dot l-read"><title>Lesen 2000: 484</title></circle><circle cx="111.5" cy="157.3" r="3.5" class="dot l-read"><title>Lesen 2003: 491</title></circle><circle cx="166.0" cy="143.2" r="3.5" class="dot l-read"><title>Lesen 2006: 495</title></circle><circle cx="220.5" cy="136.2" r="3.5" class="dot l-read"><title>Lesen 2009: 497</title></circle><circle cx="274.9" cy="97.4" r="3.5" class="dot l-read"><title>Lesen 2012: 508</title></circle><circle cx="329.4" cy="93.9" r="3.5" class="dot l-read"><title>Lesen 2015: 509</title></circle><circle cx="383.8" cy="132.6" r="3.5" class="dot l-read"><title>Lesen 2018: 498</title></circle><circle cx="456.5" cy="196.0" r="3.5" class="dot l-read"><title>Lesen 2022: 480</title></circle><circle cx="510.9" cy="248.8" r="3.5" class="dot l-read"><title>Lesen 2025: 465</title></circle><text x="520.9" y="252.8" class="lab">Lesen 465</text><path d="M111.5,115.0 L166.0,111.5 L220.5,79.8 L274.9,76.3 L329.4,104.5 L383.8,125.6 L456.5,213.6 L510.9,252.3" class="line l-math"/><circle cx="111.5" cy="115.0" r="3.5" class="dot l-math"><title>Mathematik 2003: 503</title></circle><circle cx="166.0" cy="111.5" r="3.5" class="dot l-math"><title>Mathematik 2006: 504</title></circle><circle cx="220.5" cy="79.8" r="3.5" class="dot l-math"><title>Mathematik 2009: 513</title></circle><circle cx="274.9" cy="76.3" r="3.5" class="dot l-math"><title>Mathematik 2012: 514</title></circle><circle cx="329.4" cy="104.5" r="3.5" class="dot l-math"><title>Mathematik 2015: 506</title></circle><circle cx="383.8" cy="125.6" r="3.5" class="dot l-math"><title>Mathematik 2018: 500</title></circle><circle cx="456.5" cy="213.6" r="3.5" class="dot l-math"><title>Mathematik 2022: 475</title></circle><circle cx="510.9" cy="252.3" r="3.5" class="dot l-math"><title>Mathematik 2025: 464</title></circle><text x="520.9" y="270.3" class="lab">Mathematik 464</text><path d="M166.0,69.3 L220.5,55.2 L274.9,41.1 L329.4,93.9 L383.8,115.0 L456.5,153.8 L510.9,174.9" class="line l-sci"/><circle cx="166.0" cy="69.3" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2006: 516</title></circle><circle cx="220.5" cy="55.2" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2009: 520</title></circle><circle cx="274.9" cy="41.1" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2012: 524</title></circle><circle cx="329.4" cy="93.9" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2015: 509</title></circle><circle cx="383.8" cy="115.0" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2018: 503</title></circle><circle cx="456.5" cy="153.8" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2022: 492</title></circle><circle cx="510.9" cy="174.9" r="3.5" class="dot l-sci"><title>Naturwissenschaften 2025: 486</title></circle><text x="520.9" y="178.9" class="lab">Naturwissenschaften 486</text></svg></div>
+    <div class="legend" aria-hidden="true"><span><i style="background:var(--sky)"></i>Lesen</span><span><i style="background:var(--gold)"></i>Mathematik</span><span><i style="background:var(--teal)"></i>Naturwissenschaften</span></div>
+    <figcaption>PISA-Mittelwerte Deutschland ab dem Jahr, in dem der jeweilige Bereich erstmals Hauptdomäne war (Lesen 2000, Mathematik 2003, Naturwissenschaften 2006). Quellen: OECD-Trendtabellen, ZIB/TUM 2026.</figcaption>
+  </figure>
+</section>
+
+<section class="stack" aria-labelledby="h-kette">
+  <p class="eyebrow">1 · Die Bildungskette</p>
+  <h2 id="h-kette">Von der Einschulung bis zu PISA, und wo vor Ort angesetzt wird</h2>
+  <p>Die drei Sprints zusammengelegt ergeben eine Kette. Jede Stufe hat ihren eigenen Befund; was zwischen den Stufen passiert, ist Modell, nicht Messung <span class="tag t-mod">Modell</span>.</p>
+  <ol class="pipe">
+    <li class="stage">
+      <span class="st-age">Stufe 0 · bis 6 Jahre</span>
+      <h3>Familie, Kita, Einschulung</h3>
+      <p class="st-fig">21,9 %</p>
+      <p>der Brandenburger Einschulkinder 2025 mit Sprachbefund; bei niedrigem Sozialstatus 43 % <span class="tag t-fakt">Fakt</span></p>
+      <p class="st-local cut">Kreis Potsdam-Mittelmark: Familienzentren 2027 −39 %, Koordination interkulturelle Arbeit gestrichen; Landes-Integrationsbudget seit Ende 2024 entfallen</p>
+    </li>
+    <li class="stage">
+      <span class="st-age">Stufe 1 · Klasse 4</span>
+      <h3>Grundschule</h3>
+      <p class="st-fig">−22</p>
+      <p>Punkte im Lesen 2016 → 2021 (IQB); Brandenburg −36, stärkster Rückgang aller Länder <span class="tag t-fakt">Fakt</span></p>
+      <p class="st-local invest">Bund und Land: Startchancen-Programm, in Potsdam-Mittelmark u. a. Grundschule Wiesenburg</p>
+    </li>
+    <li class="stage">
+      <span class="st-age">Stufe 2 · Klasse 9</span>
+      <h3>Sekundarstufe I</h3>
+      <p class="st-fig">−24</p>
+      <p>Punkte in Mathematik 2018 → 2024 (IQB); alle Gruppen betroffen <span class="tag t-fakt">Fakt</span></p>
+      <p class="st-local invest">Bund und Land: Startchancen, in Potsdam-Mittelmark u. a. Oberschule Bad Belzig; QuaMath</p>
+    </li>
+    <li class="stage">
+      <span class="st-age">Stufe 3 · 15 Jahre</span>
+      <h3>PISA</h3>
+      <p class="st-fig">≈ ⅓</p>
+      <p>unter Kompetenzstufe 2 in Lesen und Mathe; 2015 rund ein Sechstel <span class="tag t-fakt">Fakt</span></p>
+      <p class="st-local">Gymnasium 3–6 %, andere Schularten 37–47 % unter dem Mindestniveau</p>
+    </li>
+    <li class="stage gap">
+      <span class="st-age">Stufe 4 · danach</span>
+      <h3>Ausbildung und Beruf</h3>
+      <p class="st-fig">?</p>
+      <p>in dieser Serie nicht untersucht <span class="tag t-unb">Unbestätigt</span></p>
+    </li>
+  </ol>
+  <div class="legend" aria-hidden="true"><span><i style="background:var(--rose)"></i>vor Ort gekürzt</span><span><i style="background:var(--gold)"></i>von Bund und Land investiert</span></div>
+  <p>Daraus folgt kein Wirkungsbeweis. Daraus folgt ein Widerspruch in der Logik: Bund und Land investieren in Schulen der Region, der Kreis kürzt die Angebote davor, die Familien überhaupt erst erreichen <span class="tag t-wer">Wertung</span>. Ob diese Kürzung Kompetenzen senkt, ist nicht gemessen und wird hier nicht behauptet <span class="tag t-unb">Unbestätigt</span>.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-sprints">
+  <p class="eyebrow">2 · Die Sprints</p>
+  <h2 id="h-sprints">Drei Arbeitsschritte, jeder mit eigenem Claim-Ledger</h2>
+  <ul class="sprints">
+    <li><a class="sprint" href="#h-audit">
+      <span class="eyebrow">Sprint 0</span>
+      <h3>Befundlage und Quellenaudit</h3>
+      <p>PISA 2000–2025 nachgerechnet, IGLU, TIMSS und IQB als Gegenprobe, drei KI-Vorlagen (Gemini, GPT) geprüft. 14 Behauptungen.</p>
+      <span class="card-link">Zum Abschnitt auf dieser Seite ↓</span>
+    </a></li>
+    <li><a class="sprint" href="fundament-statt-dach.html">
+      <span class="eyebrow">Sprint 1</span>
+      <h3>Fundament statt Dach</h3>
+      <p>PISA und die Kürzungen bei Familienzentren und interkultureller Koordination im Kreis Potsdam-Mittelmark. Primärquellen aus dem Ratsinformationssystem. 16 Behauptungen.</p>
+      <span class="card-link">Öffnen ↗</span>
+    </a></li>
+    <li><a class="sprint" href="wo-geht-es-verloren.html">
+      <span class="eyebrow">Sprint 2</span>
+      <h3>Wo geht es verloren?</h3>
+      <p>IGLU, TIMSS, IQB und PISA nach Geburtsjahrgängen übereinandergelegt, Brandenburg als Sonderfall. 13 Behauptungen.</p>
+      <span class="card-link">Öffnen ↗</span>
+    </a></li>
+  </ul>
+</section>
+
+<section class="stack" aria-labelledby="h-stress">
+  <p class="eyebrow">3 · Stresstest</p>
+  <h2 id="h-stress">Fünf verbreitete Erklärungen und was davon übrig bleibt</h2>
+  <div class="tbl">
+    <table>
+      <caption class="sr-only">Verbreitete Erklärungen für den PISA-Rückgang und ihr Endstatus</caption>
+      <thead><tr><th scope="col">Erklärung</th><th scope="col">Befund der Serie</th><th scope="col">Endstatus</th></tr></thead>
+      <tbody>
+        <tr><td>„Seit 2000 geht es bergab“</td><td>Anstieg bis 2012, danach Rückgang; Lesen-Höchststand 2015 (509)</td><td><span class="tag t-fakt">Fakt</span> in dieser Form falsch</td></tr>
+        <tr><td>„Zuwanderung erklärt es“</td><td>Alle Gruppen verlieren; die veränderte Zusammensetzung erklärt rechnerisch etwa 7–14 % des Lese-Rückgangs in Klasse 4; Brandenburg mit 14 % Zuwanderungsanteil am stärksten betroffen</td><td>als Hauptursache verworfen, als Verstärker bestätigt <span class="tag t-mod">Modell</span></td></tr>
+        <tr><td>„Corona erklärt es“</td><td>IGLU sinkt seit 2006; Brandenburg Klasse 9 Mathe fiel 2012–2018</td><td>als alleinige Ursache verworfen <span class="tag t-fakt">Fakt</span></td></tr>
+        <tr><td>„Zu wenig Digitalisierung“</td><td>Lernzeit mit Geräten wie im OECD-Schnitt (1,7 h/Tag); Ablenkung häufiger (33 vs. 28 %); Schulen mit Handyverbot melden weniger Ablenkung</td><td>nicht gestützt <span class="tag t-fakt">Fakt</span>, korrelativ</td></tr>
+        <tr><td>„Seiteneinstieg erklärt Brandenburg“</td><td>Anteil an Einstellungen 14 % → 46 %; bundesweit kein signifikanter Leistungsnachteil gemessen</td><td><span class="tag t-ums">Umstritten</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="glass">
+    <h3>Die stärkste Gegenposition zur Serie selbst</h3>
+    <p>Alle Studien sind Querschnitte verschiedener Jahrgänge; keine Ursache ist kausal identifiziert. Die lokale Argumentation verbindet einen bundesweiten Befund mit einer Kreisentscheidung, ohne Kompetenzdaten für den Kreis zu haben. Beide Einwände sind berechtigt und in jedem Sprint ausgewiesen <span class="tag t-fakt">Fakt</span>.</p>
+  </div>
+</section>
+
+<section class="stack" aria-labelledby="h-audit">
+  <p class="eyebrow">4 · Sprint 0 · Quellenaudit</p>
+  <h2 id="h-audit">Was die KI-Vorlagen richtig und falsch hatten</h2>
+  <p>Am Anfang der Serie standen drei Texte, die mit Gemini und GPT erzeugt worden waren. Sie wurden wie jede andere Quelle behandelt: als Sammlung von Behauptungen, die gegen Primärquellen geprüft werden.</p>
+  <div class="tbl">
+    <table>
+      <caption class="sr-only">Prüfergebnis der drei KI-Vorlagen</caption>
+      <thead><tr><th scope="col">Vorlage</th><th scope="col">Hält</th><th scope="col">Hält nicht</th></tr></thead>
+      <tbody>
+        <tr><td>Gemini-Bericht (9 S.)</td><td>PISA-Tabelle 2000–2022, Grundzüge Startchancen und KMK-Beschlüsse</td><td>Naturwissenschaften 2025 mit 487 statt 486; Mathe- und Nawi-Werte von 2000 als Trend behandelt; Beleg für das irische DEIS-Programm ist die Fußnote „Google Sports Data“</td></tr>
+        <tr><td>GPT-Blaupause „Deutschland 2035“ (82 S.)</td><td>Kernzahlen PISA 2025; Rechtsrahmen Art. 91b und 104c GG</td><td>Mehrkosten „24–34 Mrd. € pro Jahr“ ohne Rechenweg; Zielwerte wie „Risikogruppe halbieren“ sind Setzungen, keine Befunde</td></tr>
+        <tr><td>Gemini „Offenes Exoskelett“ (4 S.)</td><td>Selbstkritik: additive Ursachenbündel ohne Gewichtung</td><td>„Startchancen wird verpuffen“ ist eine Vorhersage ohne Daten</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack" aria-labelledby="h-offen">
+  <p class="eyebrow">5 · Offen und zeitkritisch</p>
+  <h2 id="h-offen">Was noch aussteht</h2>
+  <div class="duo">
+    <div class="glass">
+      <h3>Kreistag 08.10.2026</h3>
+      <p>Über die Familienzentren (Anträge 2026/403, /414, /416) wurde heute beraten. Um 18:45 Uhr war im Ratsinformationssystem noch kein Ergebnis eingetragen <span class="tag t-unb">Unbestätigt</span>.</p>
+    </div>
+    <div class="glass">
+      <h3>Petition Koordinationsstellen</h3>
+      <p>528 Unterschriften, davon 365 von 1.900 zählend; Frist 23.10. Nötig wären rund 100 zählende Unterschriften pro Tag <span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span>.</p>
+    </div>
+  </div>
+  <figure>
+    <div class="chartbox"><svg viewBox="0 0 640 246" role="img" aria-labelledby="ctt ctd" class="chart"><title id="ctt">Petition: zählende Unterschriften bis zur Frist in drei Szenarien</title><desc id="ctd">Stand 8. Oktober: 365. Bis 23. Oktober bei 10 pro Tag etwa 523, bei 21 pro Tag etwa 681, bei 41 pro Tag etwa 990. Quorum 1.900.</desc><line x1="170.0" x2="170.0" y1="12" y2="180" class="grid"/><text x="170.0" y="198" class="tick" text-anchor="start">0</text><line x1="270.0" x2="270.0" y1="12" y2="180" class="grid"/><text x="270.0" y="198" class="tick" text-anchor="middle">500</text><line x1="370.0" x2="370.0" y1="12" y2="180" class="grid"/><text x="370.0" y="198" class="tick" text-anchor="middle">1.000</text><line x1="470.0" x2="470.0" y1="12" y2="180" class="grid"/><text x="470.0" y="198" class="tick" text-anchor="middle">1.500</text><line x1="570.0" x2="570.0" y1="12" y2="180" class="grid"/><text x="570.0" y="198" class="tick" text-anchor="end">2.000</text><line x1="550.0" x2="550.0" y1="8" y2="180" class="refline"/><text x="544.0" y="174" class="reflabel" text-anchor="end">Quorum 1.900</text><text x="160" y="35" class="lab" text-anchor="end">Stand 08.10.</text><rect x="170" y="20" width="73.0" height="20" class="s-d"><title>Stand 08.10.: 365</title></rect><text x="249.0" y="35" class="val">365</text><text x="160" y="77" class="lab" text-anchor="end">Worst (10/Tag)</text><rect x="170" y="62" width="104.6" height="20" class="o-cut"><title>Worst (10/Tag): 523</title></rect><text x="280.6" y="77" class="val">523</text><text x="160" y="119" class="lab" text-anchor="end">Base (21/Tag)</text><rect x="170" y="104" width="136.2" height="20" class="o-mid"><title>Base (21/Tag): 681</title></rect><text x="312.2" y="119" class="val">681</text><text x="160" y="161" class="lab" text-anchor="end">Best (41/Tag)</text><rect x="170" y="146" width="198.0" height="20" class="o-full"><title>Best (41/Tag): 990</title></rect><text x="374.0" y="161" class="val">990</text></svg></div>
+    <figcaption>Lineare Fortschreibung bis 23.10.2026 aus drei Ständen (04.10., 08.10. mittags und abends), keine Prognose <span class="tag t-proj">Projektion</span>. Eine Petition wirkt auch unterhalb des Quorums; das Quorum entscheidet nur über die formale Behandlung.</figcaption>
+  </figure>
+  <ol class="dates">
+    <li><time datetime="2026-10-22">22.10.2026</time><span>Kreis: Ausschuss für Haushalt und Finanzen</span></li>
+    <li><time datetime="2026-10-23">23.10.2026</time><span>Ende der Petition „Keine Kürzung der Interkulturellen Arbeit“</span></li>
+    <li><time datetime="2026-12-03">03.12.2026</time><span>Kreistag Potsdam-Mittelmark</span></li>
+    <li><time datetime="2027">2027</time><span>IQB-Bildungstrend Primar: zeigt, ob Brandenburgs Grundschul-Einbruch anhält</span></li>
+    <li><time datetime="2028">2028</time><span>IQB-Bildungstrend Sekundarstufe I, Deutsch und Englisch</span></li>
+    <li><time datetime="2029">2029</time><span>PISA 2029, Schwerpunkt Lesen</span></li>
+  </ol>
+  <p class="muted">Bewusst offen gelassen: Die Vergleichsarbeiten in Klasse 8 (VERA 8) für Brandenburg sind nicht öffentlich und auch in keiner auffindbaren Landtags-Drucksache enthalten <span class="tag t-unb">Unbestätigt</span>. Der Übergang in Ausbildung und Beruf ist nicht untersucht.</p>
+</section>
+
+<section class="stack" aria-labelledby="h-bruecken">
+  <p class="eyebrow">6 · Querverbindungen</p>
+  <h2 id="h-bruecken">Wo die Serie andere Sternenstaub-Arbeiten berührt</h2>
+  <p>Thematische Brücken, keine gegenseitigen Belege. Jede Arbeit trägt ihre Aussagen mit eigenen Quellen <span class="tag t-wer">Wertung</span>.</p>
+  <ul class="bridges">
+    <li><a href="https://stillerevolution.github.io/mutter_vater_kind/">Mutter Vater Kind</a><span>Frühe Bindung und Familie: PISA weist in Deutschland 19 % der Leistungsunterschiede dem Elternhaus zu, im OECD-Schnitt 12 %.</span></li>
+    <li><a href="https://stillerevolution.github.io/die-Ern-hrung-unserer-Kinder-/">Kindliche Ernährungsarchitektur</a><span>Kindergesundheit und Sozialstatus: Bei der Einschulung haben Kinder mit niedrigem Sozialstatus fast dreimal so oft einen Sprachbefund wie Kinder mit hohem.</span></li>
+    <li><a href="https://stillerevolution.github.io/Projekt-Sternenstaub_Leas_Spiegelwelten/">Leas Spiegelwelten</a><span>Familien und Kita als Fundament, genau die Stufe 0 der Kette.</span></li>
+    <li><a href="https://stillerevolution.github.io/sternenstaub-multiversum-3/">Multiversum 3</a><span>Bildschirme und Aufmerksamkeit: Wer im Unterricht durch Geräte abgelenkt wird, liegt bei PISA 8 Punkte niedriger, ein Zusammenhang, keine nachgewiesene Ursache.</span></li>
+    <li><a href="https://stillerevolution.github.io/Dein-innerer-Kompass-ab-7-Jahre-bis-zum-Finale/">Dein innerer Kompass</a><span>Selbstregulation: Der IQB misst bei Neuntklässlern 2018 bis 2024 deutlich mehr emotionale Probleme (d = 0,41).</span></li>
+  </ul>
+</section>
+
+<section class="stack" aria-labelledby="h-rec">
+  <p class="eyebrow">7 · Handlungsimplikationen</p>
+  <h2 id="h-rec">Fünf Schlüsse für die Debatte, jeder mit seiner Grundlage</h2>
+  <ol class="recs">
+    <li><strong>Entlang der Kette argumentieren, nicht entlang der Schlagzeile.</strong> Für Lesen beginnt der Verlust vor und in der Grundschule; Maßnahmen, die erst in der Sekundarstufe ansetzen, kommen dafür zu spät. <span class="tag r-ev">Evidenzgestützt</span> für den Befund, <span class="tag r-fach">Fachurteil</span> für den Schluss</li>
+    <li><strong>Kohärenz zwischen den Ebenen einfordern.</strong> Investitionen in Schulen und Kürzungen in der Zugangsschicht davor widersprechen sich in der Logik. Ob trotzdem gekürzt wird, entscheidet die Politik. <span class="tag r-norm">Normative Entscheidung</span></li>
+    <li><strong>Erst messen, dann kürzen.</strong> Die Wirkungsevaluation der Familienzentren läuft ab Oktober 2026; sie abzuwarten passt zur eigenen Haushaltsregel des Kreises. <span class="tag r-fach">Fachurteil</span></li>
+    <li><strong>Brandenburgs Grundschul-Einbruch ernst nehmen.</strong> Er ist mit öffentlichen Daten nicht erklärbar; der nächste Prüfpunkt ist der IQB-Bildungstrend 2027. <span class="tag r-fach">Fachurteil</span></li>
+    <li><strong>„Zuwanderung erklärt den Absturz“ mit Brandenburgs Zahlen beantworten.</strong> <span class="tag r-ev">Evidenzgestützt</span></li>
+  </ol>
+</section>
+
+<section class="stack" aria-labelledby="h-ledger">
+  <p class="eyebrow">Referenzen & Validierungspfade</p>
+  <h2 id="h-ledger">Claim-Ledger der Serie</h2>
+  <details id="ledger">
+    <summary>Zehn Kernbehauptungen mit Endstatus (vollständig in den Sprints: 43)</summary>
+    <div class="tbl">
+      <table>
+        <thead><tr><th scope="col">ID</th><th scope="col">Claim</th><th scope="col">Befund</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>S01</td><td>„Seit 2000 bergab“</td><td>Anstieg bis 2012/15, dann Rückgang</td><td><span class="tag t-fakt">Fakt</span> widerlegt</td></tr>
+          <tr><td>S02</td><td>Niveau-Rückgang ist international</td><td>2022–25 im Gleichschritt mit der OECD</td><td><span class="tag t-abl">Ableitung</span></td></tr>
+          <tr><td>S03</td><td>Soziale Schere wächst gegen den OECD-Trend</td><td>125 vs. 85 Punkte, seit 2015 gewachsen</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>S04</td><td>Sprachverlust beginnt vor Klasse 4</td><td>IGLU, IQB, Schuleingangsuntersuchung</td><td><span class="tag t-fakt">Fakt</span> <span class="tag t-abl">Ableitung</span></td></tr>
+          <tr><td>S05</td><td>Zuwanderung ist Hauptursache</td><td>alle Gruppen verlieren; Zusammensetzung 7–14 %</td><td>verworfen <span class="tag t-mod">Modell</span></td></tr>
+          <tr><td>S06</td><td>Brandenburgs Grundschul-Einbruch</td><td>stärkster Rückgang aller Länder 2016–21</td><td><span class="tag t-fakt">Fakt</span></td></tr>
+          <tr><td>S07</td><td>Der Kreis kürzt die Zugangsschicht</td><td>Familienzentren −39 %, Koordination gestrichen</td><td><span class="tag t-fakt">Fakt</span> / Beschluss <span class="tag t-unb">Unbestätigt</span></td></tr>
+          <tr><td>S08</td><td>Die Kürzung senkt Kompetenzen</td><td>nicht gemessen</td><td><span class="tag t-unb">Unbestätigt</span>, bewusst nicht behauptet</td></tr>
+          <tr><td>S09</td><td>Die KI-Vorlagen sind belastbar</td><td>Kernzahlen ja; Kosten ohne Herleitung, eine unbrauchbare Fußnote</td><td>teilweise widerlegt</td></tr>
+          <tr><td>S10</td><td>Die Petition erreicht das Quorum</td><td>Basisszenario ≈ 36 %</td><td><span class="tag t-proj">Projektion</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <details id="quellen">
+    <summary>Hauptquellen der Serie (vollständig in den Sprints)</summary>
+    <div>
+      <ul class="src">
+        <li><a href="https://www.zib.education/fileadmin/Dokumente/PISA/PISA_2025/PISA2025-Zusammenfassung.pdf">PISA 2025 Zusammenfassung (ZIB/TUM)</a>; <a href="https://deutsches-schulportal.de/bildungswesen/die-zehn-wichtigsten-ergebnisse-der-pisa-studie-2025/">Deutsches Schulportal: zehn Ergebnisse</a></li>
+        <li><a href="https://www.iqb.hu-berlin.de/media/documents/IQB_Bildungstrend2021_Berichtsband.pdf">IQB-Bildungstrend 2021</a>, <a href="https://www.iqb.hu-berlin.de/documents/53/IQB_Bildungstrend2022_Praesentation_Handout.pdf">2022</a>, <a href="https://www.iqb.hu-berlin.de/media/documents/IQB_Bildungstrend2024_Pr%C3%A4sentationsfolien-7.pdf">2024</a></li>
+        <li><a href="https://WWW.TU-DORTMUND.DE/storages/tu_website/Referat_1/Presseseite/Pressemitteilungen/Pressemitteilungen_2023/2023_030_Vergleichsstudie_IGLU.pdf">IGLU 2021</a>; <a href="https://www.kmk.org/aktuelles/pressearchiv/mitteilung/grundschuelerinnen-und-schueler-halten-ihre-leistungen-in-mathematik-und-naturwissenschaften-und-das-trotz-pandemie.html">TIMSS 2023</a></li>
+        <li><a href="https://lavg.brandenburg.de/sixcms/media.php/9/GBEimFokus_2026_Q2_SprachundSprechst%C3%B6rungen_PDF-Download_V3.pdf">LAVG: Sprach- und Sprechstörungen bei Einschulkindern</a></li>
+        <li><a href="https://pm-belzig.gremien.info/">Ratsinformationssystem Potsdam-Mittelmark</a> (Anträge 2026/403, /414, /416; J/2026/026; A/2025/028, /039)</li>
+        <li><a href="https://www.openpetition.de/petition/online/keine-kuerzung-der-interkulturellen-arbeit-begegnung-toleranzarbeit-und-demokratie-schuetzen">Petition „Keine Kürzung der Interkulturellen Arbeit“</a></li>
+        <li><a href="https://www.christiandustmann.com/content/4-research/10-who-benefits-from-universal-childcare-estimating-marginal-returns-to-early-childcare-attendance/699979.pdf">Cornelissen u. a. 2018</a>; <a href="https://www.ph-heidelberg.de/fileadmin/wp/wp-schoeler/Dokumente/EVAS_Bericht_3.pdf">EVAS 2007</a>; <a href="https://edoc.ku.de/id/eprint/36239/1/s11618-026-01380-0.pdf">Richter u. a. 2026</a></li>
+      </ul>
+      <p class="muted">Rechenwege (Python) liegen den Sprints bei; für diese Seite: Petitions-Tempo seit Start und seit 04.10., benötigtes Tempo, drei Szenarien, Höchststände der PISA-Reihen.</p>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <p>Projekt Sternenstaub · PISA-Serie · Knotenpunkt der Sprints 0 bis 2 · <a href="fundament-statt-dach.html">Sprint 1</a> · <a href="wo-geht-es-verloren.html">Sprint 2</a></p>
+  <p>Unabhängige Analyse auf Basis öffentlicher Quellen. Nicht von OECD, IQB, MBJS, Kreisverwaltung, Kreistag oder Trägern verfasst oder geprüft.</p>
+</footer>
+</main>
+
+<dialog id="exo" aria-labelledby="exo-title">
+  <div class="inner">
+    <div class="head">
+      <h2 id="exo-title">Epistemisches Exoskelett</h2>
+      <button class="btn" type="button" id="exo-close">Schließen</button>
+    </div>
+    <p><strong>Geprüfte Nullhypothese der Serie:</strong> Der Rückgang seit 2000 ist ein kontinuierlicher, im Wesentlichen durch Zuwanderung und Pandemie erklärter Abstieg, dem die Politik auf allen Ebenen kohärent begegnet. Ergebnis: in allen vier Teilen verworfen oder eingeschränkt.</p>
+    <h3>Evidenzklassen</h3>
+    <dl class="classes">
+      <dt><span class="tag t-fakt">Fakt</span></dt><dd>direkt belegt; bei Sekundärzitaten als berichtet gekennzeichnet</dd>
+      <dt><span class="tag t-sch">Schätzung</span></dt><dd>Näherung aus belegten Größen mit benannter Unsicherheit</dd>
+      <dt><span class="tag t-abl">Ableitung</span></dt><dd>logisch oder rechnerisch aus Fakten gefolgert</dd>
+      <dt><span class="tag t-mod">Modell</span></dt><dd>Annahme über einen nicht gemessenen Zusammenhang</dd>
+      <dt><span class="tag t-proj">Projektion</span></dt><dd>Fortschreibung in die Zukunft</dd>
+      <dt><span class="tag t-ums">Umstritten</span></dt><dd>Fachstreit oder widersprüchliche Befunde</dd>
+      <dt><span class="tag t-wer">Wertung</span></dt><dd>normative Bewertung</dd>
+      <dt><span class="tag t-unb">Unbestätigt</span></dt><dd>trotz Recherche nicht auffindbar oder nicht einsehbar</dd>
+    </dl>
+    <h3>Grenzen der Serie</h3>
+    <ul class="src">
+      <li>Alle verwendeten Studien sind Querschnitte verschiedener Jahrgänge; Ursachen sind nicht kausal identifiziert.</li>
+      <li>IGLU, TIMSS, IQB und PISA nutzen getrennte Skalen; verglichen werden nur Veränderungen innerhalb einer Studie.</li>
+      <li>Für den Kreis Potsdam-Mittelmark gibt es keine öffentlichen Kompetenzdaten.</li>
+      <li>Der Übergang in Ausbildung und Beruf ist nicht untersucht.</li>
+    </ul>
+    <h3>Bewusste Entscheidungen</h3>
+    <ul class="src">
+      <li>Keine Behauptung, dass eine bestimmte Kürzung PISA-Werte senkt.</li>
+      <li>Keine Projektion künftiger PISA-Werte.</li>
+      <li>Keine Anfrage an Behörden; nicht öffentliche Daten bleiben als Lücke stehen.</li>
+    </ul>
+  </div>
+</dialog>
+
+
+<script>
+(function () {
+  "use strict";
+  // Exoskelett-Dialog
+  var dlg = document.getElementById("exo");
+  var openBtn = document.getElementById("exo-open");
+  var closeBtn = document.getElementById("exo-close");
+  if (dlg && typeof dlg.showModal === "function") {
+    openBtn.addEventListener("click", function () { dlg.showModal(); closeBtn.focus(); });
+    closeBtn.addEventListener("click", function () { dlg.close(); openBtn.focus(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) { dlg.close(); } });
+  } else if (openBtn) {
+    openBtn.hidden = true;
+  }
+
+  // Rechenschwelle
+  var nf = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+  var ef = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+  var slider = document.getElementById("kostenFall");
+  function upd() {
+    var c = Number(slider.value);
+    document.getElementById("kostenOut").textContent = ef.format(c) + " €";
+    document.getElementById("nFz").textContent = nf.format(500000 / c);
+    document.getElementById("nKo").textContent = nf.format(140000 / c);
+    document.getElementById("nBoth").textContent = nf.format(640000 / c);
+  }
+  if (slider) { slider.addEventListener("input", upd); upd(); }
+
+  // Druck: Ledger und Quellen aufklappen
+  window.addEventListener("beforeprint", function () {
+    document.querySelectorAll("details").forEach(function (d) { d.open = true; });
+  });
+
+  // Magnetischer Sternenstaub
+  var cv = document.getElementById("sky");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!cv || reduce) { return; }
+  var ctx = cv.getContext("2d");
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var pts = [];
+  var mouse = { x: -9999, y: -9999 };
+  function size() {
+    cv.width = Math.floor(innerWidth * dpr);
+    cv.height = Math.floor(innerHeight * dpr);
+    var n = Math.min(140, Math.floor(innerWidth * innerHeight / 9000));
+    pts = [];
+    for (var i = 0; i < n; i++) {
+      pts.push({ x: Math.random() * cv.width, y: Math.random() * cv.height, vx: (Math.random() - .5) * .15 * dpr, vy: (Math.random() - .5) * .15 * dpr, r: (Math.random() * 1.2 + .3) * dpr, g: Math.random() < .18 });
+    }
+  }
+  size();
+  addEventListener("resize", size);
+  addEventListener("pointermove", function (e) { mouse.x = e.clientX * dpr; mouse.y = e.clientY * dpr; });
+  function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      var dx = mouse.x - p.x, dy = mouse.y - p.y, d2 = dx * dx + dy * dy, R = 160 * dpr;
+      if (d2 < R * R) { var f = (1 - Math.sqrt(d2) / R) * .02; p.vx += dx * f * .02; p.vy += dy * f * .02; }
+      p.vx *= .985; p.vy *= .985;
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x += cv.width; if (p.x > cv.width) p.x -= cv.width;
+      if (p.y < 0) p.y += cv.height; if (p.y > cv.height) p.y -= cv.height;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.g ? "rgba(217,163,92,.85)" : "rgba(244,234,217,.6)";
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
